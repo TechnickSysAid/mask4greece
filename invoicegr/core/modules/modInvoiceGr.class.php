@@ -50,7 +50,7 @@ class modInvoiceGr extends DolibarrModules
 
 		$this->description = "Enable Invoice model for Greece standard";
 
-		$this->version = '1.8.5';
+		$this->version = '1.8.5 Beta';
 
 		$this->const_name = 'MAIN_MODULE_' . strtoupper($this->name);
 
