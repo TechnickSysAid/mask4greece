@@ -35,7 +35,7 @@
  *	@param		Translate	$outputlangs		Output lang to use to autodetect output format if setup not done
  *  @return     array							Array('width'=>w,'height'=>h,'unit'=>u);
  */
-function pdf_getFormatgr(Translate $outputlangs = null)
+function pdf_getFormatgr($outputlangs='')
 {
 	global $conf,$db;
 

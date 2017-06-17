@@ -1591,7 +1591,7 @@ class pdf_moon_invoicegr4 extends ModelePDFFactures
 			$posy+=4;
 			$pdf->SetXY($posx,$posy);
 			$pdf->SetTextColor(0,0,0);
-			$pdf->MultiCell(100, 3, $outputlangs->transnoentities("CustomerCode").": " . $outputlangs->transnoentities($object->thirdparty->code_client), '', 'L');
+			$pdf->MultiCell(100, 3, $outputlangs->transnoentities("CustomerCode").": " . $outputlangs->transnoentities($object->client->code_client), '', 'L');
 		}
 
 		$posy+=1;
@@ -1643,17 +1643,20 @@ class pdf_moon_invoicegr4 extends ModelePDFFactures
 				$result=$object->fetch_contact($arrayidcontact[0]);
 			}
 
-			//Recipient name
-			// On peut utiliser le nom de la societe du contact
-			if ($usecontact && !empty($conf->global->MAIN_USE_COMPANY_NAME_OF_CONTACT)) {
-				$thirdparty = $object->contact;
-			} else {
-				$thirdparty = $object->thirdparty;
+			// Recipient name
+			if (! empty($usecontact))
+			{
+				// On peut utiliser le nom de la societe du contact
+				if (! empty($conf->global->MAIN_USE_COMPANY_NAME_OF_CONTACT)) $socname = $object->contact->socname;
+				else $socname = $object->client->nom;
+				$carac_client_name=$outputlangs->convToOutputCharset($socname);
+			}
+			else
+			{
+				$carac_client_name=$outputlangs->convToOutputCharset($object->client->nom);
 			}
 
-			$carac_client_name= pdfBuildThirdpartyName($thirdparty, $outputlangs);
-
-			$carac_client=pdf_build_address($outputlangs,$this->emetteur,$object->thirdparty,($usecontact?$object->contact:''),$usecontact,'target',$object);
+			$carac_client=pdf_build_addressgr($outputlangs,$this->emetteur,$object->client,($usecontact?$object->contact:''),$usecontact,'target');
 
 			// Show recipient
 			$widthrecbox=80;
