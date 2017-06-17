@@ -1,1 +1,1 @@
-Greek-Invoice-Template-Dolibarr
+PDF model Greece standard for Dolibarr Erp & CRM
