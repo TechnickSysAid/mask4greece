@@ -1,0 +1,44 @@
+# Invoice model for Greece standard module language file - el_GR - invoicegr
+# Copyright (C) 2014	        Nikos Drosis Technicks ICT <info@technicks.eu>
+
+
+
+# Generic
+Module13099Name = Ελληνικό πρότυπο τιμολογίου
+Module13099Desc = Ελληνικό πρότυπο τιμολογίου
+
+
+# Admin page
+Setup = Διαμόρφωση
+Settings = Ρυθμίσεις
+SetupPage = Σελίδα διαμόρφωσης Ελληνικού πρότυπου τιμολογίου
+FPNothingToSet = Δεν υπάρχει συγκεκριμένη ρύθμιση. Πηγαίνετε στα Τιμολόγια και επιλέξετε το μοντέλο moon
+InvoicemoonDescription = Πρότυπο τιμολογίου PDF Moon. Ένα πλήρες πρότυπο τιμολογίου (συνιστώμενο πρότυπο για Ελλάδα)
+
+
+
+# About page
+About = Πληροφορίες
+MyModuleAbout = Πληροφορίες module
+AboutPage = Πληροφορίες για το Ελληνικό πρότυπο τιμολογίου
+
+
+# Invoice
+Invoicegr= ΤΙΜΟΛΟΓΙΟ-ΔΕΛΤΙΟ ΑΠΟΣΤΟΛΗΣ
+Invoicegr1= ΤΙΜΟΛΟΓΙΟ-ΠΑΡΟΧΗΣ ΥΠΗΡΕΣΙΩΝ
+Invoicegr2= ΠΙΣΤΩΤΙΚΟ ΤΙΜΟΛΟΓΙΟ
+Invoicegr3= ΔΕΛΤΙΟ ΠΑΡΑΛΑΒΗΣ
+Invoicegr4= ΔΕΛΤΙΟ ΑΠΟΣΤΟΛΗΣ
+Invoicegr5= ΑΠΟΔΕΙΞΗ ΛΙΑΝΙΚΗΣ ΠΩΛΗΣΗΣ
+Refgr = Αρ.Παραστατικού
+DateInvoicegr = Ημερομηνία
+DateEcheancegr = Ημερομηνία Πληρωμής
+Timegr = Ώρα
+Elementsinv = Στοιχεία Παραστατικού
+Thetrad = Ο ΕΚΔΟΤΗΣ
+Thereceipts = Ο ΠΑΡΑΛΑΒΩΝ
+RefPrgr = Κωδικός
+Pieces = Τεμ.
+PiecesHour = Ώρα
+PiecesMeter = Μετ.
+Unitgr = Μ.Μ.
