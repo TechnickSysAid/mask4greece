@@ -50,11 +50,11 @@ if needed rename dolibarr_module_externalaccess folder to externalaccess
         
 ### From a GIT repository
 
-- Clone the repository in ```$dolibarr_main_document_root_alt/externalaccess```
+- Clone the repository in ```$dolibarr_main_document_root_alt/mask4greece```
 
 ```sh
 cd ....../custom
-git clone git@giturl:gitlogin/externalaccess.git externalaccess
+git clone git@giturl:gitlogin/externalaccess.git mask4greece
 ```
 
 ### <a name="final_steps"></a>Final steps
