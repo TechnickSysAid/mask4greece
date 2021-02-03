@@ -1,5 +1,5 @@
 <?php
-/* Copyright (C) 2014	Nikos Drosis Technicks ICT <info@technicks.eu>
+/* Copyright (C) 2014 - 2021	Nikos Drosis SysAid.gr <info@sysaid.gr>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ include_once DOL_DOCUMENT_ROOT . "/core/modules/DolibarrModules.class.php";
 /**
  * Description and activation class for module Facturepoids
  */
-class modInvoiceGr extends DolibarrModules
+class modMask4greece extends DolibarrModules
 {
 
 	/**
@@ -35,14 +35,14 @@ class modInvoiceGr extends DolibarrModules
 	 *
 	 * 	@param	DoliDB		$db	Database handler
 	 */
-	function modInvoiceGr($db)
+	function modMask4greece($db)
 	{
 		global $langs, $conf;
 
 		$this->db = $db;
 
 		$this->numero = 13001;
-		$this->rights_class = 'invoicegr';
+		$this->rights_class = 'mask4greece';
 
 		$this->family = "financial";
 
@@ -50,13 +50,13 @@ class modInvoiceGr extends DolibarrModules
 
 		$this->description = "Enable Invoice model for Greece standard";
 
-		$this->version = '1.8.5';
+		$this->version = 'Dev';
 
 		$this->const_name = 'MAIN_MODULE_' . strtoupper($this->name);
 
 		$this->special = 0;
 
-		$this->picto = 'invoicegr@invoicegr'; // mypicto@mymodule
+		$this->picto = 'mask4greece@mask4greece'; // mypicto@mymodule
 
 		$this->module_parts = array(
 			'models' => 1,
@@ -66,12 +66,12 @@ class modInvoiceGr extends DolibarrModules
 		$this->dirs = array();
 
 
-		$this->config_page_url = array("admin_invoicegr.php@invoicegr");
+		$this->config_page_url = array("admin_mask4greece.php@mask4greece");
 		$this->depends = array('modSociete');
 		$this->requiredby = array();
 		$this->phpmin = array(5, 2);
 		$this->need_dolibarr_version = array(3, 2);
-		$this->langfiles = array("invoicegr@invoicegr"); // langfiles@mymodule
+		$this->langfiles = array("mask4greece@mask4greece"); // langfiles@mymodule
 
 		$this->const = array();
 
@@ -127,10 +127,26 @@ class modInvoiceGr extends DolibarrModules
 	{
 		$sql = array("DELETE FROM ".MAIN_DB_PREFIX."document_model WHERE nom like 'moon_%';");
 		return $this->_remove($sql);
-//$sql = array("DELETE FROM llx_document_model  WHERE nom='moon_%'");
+    //$sql = array("DELETE FROM llx_document_model  WHERE nom='moon_%'");
 
 		return $this->_remove($sql, $options);
 	}
+
+
+     /**
+	 * Create tables, keys and data required by module
+	 * Files llx_table1.sql, llx_table1.key.sql llx_data.sql with create table, create keys
+	 * and create data commands must be stored in directory /mymodule/sql/
+	 * This function is called by this->init
+	 *
+	 * 	@return		int		<=0 if KO, >0 if OK
+	 */
+	private function loadTables()
+	{
+		return $this->_load_tables('/mask4greece/sql/');
+	}
+
+
 }
 
 ?>
