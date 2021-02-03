@@ -1,5 +1,5 @@
 <?php
-/* Copyright (C) 2014	Nikos Drosis Technicks ICT <info@technicks.eu>
+/* Copyright (C) 2014 - 2021	Nikos Drosis SysAid.gr <info@sysaid.gr>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
