@@ -1,7 +1,7 @@
 PDF model for Greece standard
 =========
 
-Αυτό το module προϋποθέτει το Dolibarr >=5.0 σταθερή έκδοση
+Αυτό το module προϋποθέτει το Dolibarr >=12.0.0 σταθερή έκδοση
 
 
 Άδεια
@@ -18,4 +18,4 @@ GPLv3 ή (κατ 'επιλογή σας) οποιαδήποτε μεταγενέ
 
 Επικοινωνία
 --------
-Αυτό το module έχει αναπτυχθεί από την Technicks ICT info@technicks.eu
+Αυτό το module έχει αναπτυχθεί από την SysAid.gr info@sysaid.gr
