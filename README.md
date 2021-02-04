@@ -54,7 +54,7 @@ if needed rename dolibarr_module_externalaccess folder to externalaccess
 
 ```sh
 cd ....../custom
-git clone git@giturl:gitlogin/externalaccess.git mask4greece
+git clone git@giturl:gitlogin/mask4greece.git mask4greece
 ```
 
 ### <a name="final_steps"></a>Final steps
