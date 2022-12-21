@@ -1,7 +1,7 @@
 PDF model for Greece standard
 =========
 
-Αυτό το module προϋποθέτει το Dolibarr >=12.0.0 σταθερή έκδοση
+Αυτό το module προϋποθέτει το Dolibarr >=16.0.0 + σταθερή έκδοση
 
 
 Άδεια
