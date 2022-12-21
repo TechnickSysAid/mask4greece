@@ -3,9 +3,9 @@ Dolibarr invoice mask for Greece & PDF model
 ***
 ## Version Information:
 * Name: Mask4Greece
-* Prerequisites: Dolibarr version 12.x+
+* Prerequisites: Dolibarr version 16.x+
 * Current version: 0.0.1 Dev
-* Last updated: -/-/2021
+* Last updated: -/-/2022
 ***
 
 ## LICENSE
