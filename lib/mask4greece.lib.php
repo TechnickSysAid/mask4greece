@@ -1,5 +1,6 @@
 <?php
-/* Copyright (C) 2014	        Nikos Drosis Technicks ICT <info@technicks.eu>
+/* Copyright (C) 2022-2023 Nikos Drosis      <ndrosis@sysaid.gr>
+ * Copyright (C) 2022-2023 Nick Fragoulis
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -12,38 +13,57 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
- *	\file		lib/invoicegr.lib.php
- *	\ingroup	invoicegr
- *	\brief		invoicegr library
+ * \file    mask4greece/lib/mask4greece.lib.php
+ * \ingroup mask4greece
+ * \brief   Library files with common functions for Mask4greece
  */
 
-
-
-function invoicegradmin_prepare_head()
+/**
+ * Prepare admin pages header
+ *
+ * @return array
+ */
+function mask4greeceAdminPrepareHead()
 {
 	global $langs, $conf;
-	
-	$langs->load("invoicegr@invoicegr");
+
+	$langs->load("mask4greece@mask4greece");
 
 	$h = 0;
 	$head = array();
 
-	$head[$h][0] = dol_buildpath("/invoicegr/admin/admin_invoicegr.php",1);
+	$head[$h][0] = dol_buildpath("/mask4greece/admin/setup.php", 1);
 	$head[$h][1] = $langs->trans("Settings");
 	$head[$h][2] = 'settings';
 	$h++;
-	$head[$h][0] = dol_buildpath("/invoicegr/admin/about.php",1);
+
+	/*
+	$head[$h][0] = dol_buildpath("/mask4greece/admin/myobject_extrafields.php", 1);
+	$head[$h][1] = $langs->trans("ExtraFields");
+	$head[$h][2] = 'myobject_extrafields';
+	$h++;
+	*/
+
+	$head[$h][0] = dol_buildpath("/mask4greece/admin/about.php", 1);
 	$head[$h][1] = $langs->trans("About");
 	$head[$h][2] = 'about';
 	$h++;
 
-	complete_head_from_modules($conf,$langs,$object,$head,$h,'invoicegr');
+	// Show more tabs from modules
+	// Entries must be declared in modules descriptor with line
+	//$this->tabs = array(
+	//	'entity:+tabname:Title:@mask4greece:/mask4greece/mypage.php?id=__ID__'
+	//); // to add new tab
+	//$this->tabs = array(
+	//	'entity:-tabname:Title:@mask4greece:/mask4greece/mypage.php?id=__ID__'
+	//); // to remove a tab
+	complete_head_from_modules($conf, $langs, $object, $head, $h, 'mask4greece@mask4greece');
+
+	complete_head_from_modules($conf, $langs, $object, $head, $h, 'mask4greece@mask4greece', 'remove');
 
 	return $head;
 }
-
-
