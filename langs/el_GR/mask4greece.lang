@@ -1,44 +1,59 @@
-# Invoice mask for Greece & PDF model module language file - el_GR - mask4greece
-# Copyright (C) 2014 - 2021	        Nikos Drosis SysAid.gr <info@sysaid.gr>
+# Copyright (C) 2022-2023 Nikos Drosis       <ndrosis@sysaid.gr>
+# Copyright (C) 2022-2023 Nick Fragoulis
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
-
+#
 # Generic
-Module13099Name = Ελληνικό πρότυπο τιμολογίου
-Module13099Desc = Ελληνικό πρότυπο τιμολογίου
+#
 
+# Module label 'ModuleMask4GreeceName'
+ModuleMask4greeceName = Mask4Greece
+# Module description 'ModuleMask4GreeceDesc'
+ModuleMask4GreeceDesc = Dolibarr invoice mask for Greece & PDF model
 
+#
 # Admin page
-Setup = Διαμόρφωση
+#
+Mask4GreeceSetup = Διαμόρφωση Ελληνικού πρότυπου τιμολογίου
 Settings = Ρυθμίσεις
-SetupPage = Σελίδα διαμόρφωσης Ελληνικού πρότυπου τιμολογίου
-FPNothingToSet = Δεν υπάρχει συγκεκριμένη ρύθμιση. Πηγαίνετε στα Τιμολόγια και επιλέξετε το μοντέλο moon
-InvoicemoonDescription = Πρότυπο τιμολογίου PDF Moon. Ένα πλήρες πρότυπο τιμολογίου (συνιστώμενο πρότυπο για Ελλάδα)
+Mask4GreeceSetupPage = Σελίδα διαμόρφωσης Ελληνικού πρότυπου τιμολογίου
+MASK4GREECE_MYPARAM1 = My param 1
+MASK4GREECE_MYPARAM1Tooltip = My param 1 tooltip
+MASK4GREECE_MYPARAM2=My param 2
+MASK4GREECE_MYPARAM2Tooltip=My param 2 tooltip
 
 
-
+#
 # About page
+#
 About = Πληροφορίες
-MyModuleAbout = Πληροφορίες module
-AboutPage = Πληροφορίες για το Ελληνικό πρότυπο τιμολογίου
+Mask4GreeceAbout = Πληροφορίες module
+Mask4GreeceAboutPage = Πληροφορίες για το Ελληνικό πρότυπο τιμολογίου
 
+#
+# Sample page
+#
+# Mask4GreeceArea = Home Mask4greece
+# MyPageName = My page name
 
-# Invoice
-Invoicegr= ΤΙΜΟΛΟΓΙΟ-ΔΕΛΤΙΟ ΑΠΟΣΤΟΛΗΣ
-Invoicegr1= ΤΙΜΟΛΟΓΙΟ-ΠΑΡΟΧΗΣ ΥΠΗΡΕΣΙΩΝ
-Invoicegr2= ΠΙΣΤΩΤΙΚΟ ΤΙΜΟΛΟΓΙΟ
-Invoicegr3= ΔΕΛΤΙΟ ΠΑΡΑΛΑΒΗΣ
-Invoicegr4= ΔΕΛΤΙΟ ΑΠΟΣΤΟΛΗΣ
-Invoicegr5= ΑΠΟΔΕΙΞΗ ΛΙΑΝΙΚΗΣ ΠΩΛΗΣΗΣ
-Refgr = Αρ.Παραστατικού
-DateInvoicegr = Ημερομηνία
-DateEcheancegr = Ημερομηνία Πληρωμής
-Timegr = Ώρα
-Elementsinv = Στοιχεία Παραστατικού
-Thetrad = Ο ΕΚΔΟΤΗΣ
-Thereceipts = Ο ΠΑΡΑΛΑΒΩΝ
-RefPrgr = Κωδικός
-Pieces = Τεμ.
-PiecesHour = Ώρα
-PiecesMeter = Μετ.
-Unitgr = Μ.Μ.
+#
+# Sample widget
+#
+# MyWidget = My widget
+# MyWidgetDescription = My widget description
+
+# Pdf Doc
+PDFMoonDescription = Πρότυπο τιμολογίου PDF Moon. Ένα πλήρες πρότυπο τιμολογίου (συνιστώμενο πρότυπο για Ελλάδα)
+PDFBlueMoonDescription = Πρότυπο προσφοράς PDF Moon. Ένα πλήρες πρότυπο προσφορ (συνιστώμενο πρότυπο για Ελλάδα)
