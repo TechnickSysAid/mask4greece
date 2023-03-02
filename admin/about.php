@@ -1,5 +1,7 @@
 <?php
-/* Copyright (C) 2014	Nikos Drosis Technicks ICT <info@technicks.eu>
+/* Copyright (C) 2004-2017 Laurent Destailleur  <eldy@users.sourceforge.net>
+ * Copyright (C) 2022-2023 Nikos Drosis              <ndrosis@sysaid.gr>
+ * Copyright (C) 2022-2023 Nick Fragoulis
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -12,61 +14,93 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 /**
- * 	\file		admin/about.php
- * 	\ingroup	invoicegr
- * 	\brief		about page
+ * \file    mask4greece/admin/about.php
+ * \ingroup mask4greece
+ * \brief   About page of module Mask4greece.
  */
 
-// Dolibarr environment
-$res = @include("../../main.inc.php"); // From htdocs directory
-if (!$res) $res = @include("../../../main.inc.php"); // From "custom" directory
-
+// Load Dolibarr environment
+$res = 0;
+// Try main.inc.php into web root known defined into CONTEXT_DOCUMENT_ROOT (not always defined)
+if (!$res && !empty($_SERVER["CONTEXT_DOCUMENT_ROOT"])) {
+	$res = @include $_SERVER["CONTEXT_DOCUMENT_ROOT"]."/main.inc.php";
+}
+// Try main.inc.php into web root detected using web root calculated from SCRIPT_FILENAME
+$tmp = empty($_SERVER['SCRIPT_FILENAME']) ? '' : $_SERVER['SCRIPT_FILENAME']; $tmp2 = realpath(__FILE__); $i = strlen($tmp) - 1; $j = strlen($tmp2) - 1;
+while ($i > 0 && $j > 0 && isset($tmp[$i]) && isset($tmp2[$j]) && $tmp[$i] == $tmp2[$j]) {
+	$i--; $j--;
+}
+if (!$res && $i > 0 && file_exists(substr($tmp, 0, ($i + 1))."/main.inc.php")) {
+	$res = @include substr($tmp, 0, ($i + 1))."/main.inc.php";
+}
+if (!$res && $i > 0 && file_exists(dirname(substr($tmp, 0, ($i + 1)))."/main.inc.php")) {
+	$res = @include dirname(substr($tmp, 0, ($i + 1)))."/main.inc.php";
+}
+// Try main.inc.php using relative path
+if (!$res && file_exists("../../main.inc.php")) {
+	$res = @include "../../main.inc.php";
+}
+if (!$res && file_exists("../../../main.inc.php")) {
+	$res = @include "../../../main.inc.php";
+}
+if (!$res) {
+	die("Include of main fails");
+}
 
 // Libraries
-require '../lib/invoicegr.lib.php';
-require '../lib/PHP_Markdown/markdown.php';
+require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
+require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
+require_once '../lib/mask4greece.lib.php';
 
-
-//require_once "../class/myclass.class.php";
 // Translations
-$langs->load("invoicegr@invoicegr");
+$langs->loadLangs(array("errors", "admin", "mask4greece@mask4greece"));
 
 // Access control
-if (!$user->admin)
+if (!$user->admin) {
 	accessforbidden();
+}
+
+// Parameters
+$action = GETPOST('action', 'aZ09');
+$backtopage = GETPOST('backtopage', 'alpha');
+
+
+/*
+ * Actions
+ */
+
+// None
+
 
 /*
  * View
  */
-$page_name = $langs->trans("About");
-llxHeader('', $page_name);
+
+$form = new Form($db);
+
+$help_url = '';
+$page_name = "Mask4GreeceAbout";
+
+llxHeader('', $langs->trans($page_name), $help_url);
 
 // Subheader
-$linkback = '<a href="' . DOL_URL_ROOT . '/admin/modules.php">'	. $langs->trans("BackToModuleList") . '</a>';
-print_fiche_titre($page_name, $linkback);
+$linkback = '<a href="'.($backtopage ? $backtopage : DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1').'">'.$langs->trans("BackToModuleList").'</a>';
+
+print load_fiche_titre($langs->trans($page_name), $linkback, 'title_setup');
 
 // Configuration header
-$head = invoicegradmin_prepare_head();
-dol_fiche_head($head, 'about', $langs->trans("Module13099Name"), 0, "invoicegr@invoicegr");
+$head = mask4greeceAdminPrepareHead();
+print dol_get_fiche_head($head, 'about', $langs->trans($page_name), 0, 'mask4greece@mask4greece');
 
-// About page goes here
-echo $langs->trans("AboutPage");
+dol_include_once('/mask4greece/core/modules/modMask4Greece.class.php');
+$tmpmodule = new modMask4greece($db);
+print $tmpmodule->getDescLong();
 
-print '<br>';
-
-$buffer = file_get_contents(dol_buildpath('/invoicegr/README.md',0));
-print Markdown($buffer);
-
-print '<br>';
-
-print '<a href="'.dol_buildpath('/invoicegr/COPYING',1).'">';
-print '<img src="'.dol_buildpath('/invoicegr/img/gplv3.png',1).'"/>';
-print '</a>';
-
+// Page end
+print dol_get_fiche_end();
 llxFooter();
 $db->close();
-?>
