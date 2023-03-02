@@ -3,13 +3,12 @@ Dolibarr invoice mask for Greece & PDF model
 ***
 ## Version Information:
 * Name: Mask4Greece
-* Prerequisites: Dolibarr version 16.x+
-* Current version: 0.0.1 Dev
-* Last updated: -/-/2022
+* Prerequisites: Dolibarr version 16.x.+
+* Current version: 1.0.0
+* Last updated: 04/01/2022
 ***
 
 ## LICENSE
-Copyright (C) 2021 TSA Consulting <info@sysaid.gr>
 External Access is released under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version (GPL-3+).
 
 See the [COPYING](https://github.com/Dolibarr/dolibarr/blob/develop/COPYING) file for a full copy of the license.
@@ -48,20 +47,10 @@ Note: If this screen tell you there is no custom directory, check your setup is 
 
 if needed rename dolibarr_module_externalaccess folder to externalaccess
         
-### From a GIT repository
 
-- Clone the repository in ```$dolibarr_main_document_root_alt/mask4greece```
-
-```sh
-cd ....../custom
-git clone git@giturl:gitlogin/mask4greece.git mask4greece
-```
-
-### <a name="final_steps"></a>Final steps
 
 From your browser:
 
   - Log into Dolibarr as a super-administrator
   - Go to "Setup" -> "Modules"
   - You should now be able to find and enable the module
-
