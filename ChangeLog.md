@@ -1,5 +1,9 @@
 # CHANGELOG Mask4Greece FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
+***** ChangeLog for 2.0.1 compared to 2.0.0 ***** 
+ 
+FIX: fix new page thanks to avogiatzakis (As32)
+
 ## 2.0.0
 
 Initial version
