@@ -491,7 +491,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 
 				// $this->tab_top is y where we must continue content (90 = 42 + 48: 42 is height of logo and ref, 48 is address blocks)
 				$this->tab_top = 90 + $top_shift + $shipp_shift;		// top_shift is an addition for linked objects or addons (0 in most cases)
-				$this->tab_top_newpage = (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD') ? 42 + $top_shift : 10);
+				$this->tab_top_newpage = (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD') ? 85 + $top_shift : 10);
 
 				// You can add more thing under header here, if you increase $extra_under_address_shift too.
 				$extra_under_address_shift = 0;
@@ -612,7 +612,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 								$pdf->useTemplate($tplidx);
 							}
 							if (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD')) {
-								$this->_pagehead($pdf, $object, 0, $outputlangs, $outputlangsbis);
+								$this->_pagehead($pdf, $object, 1, $outputlangs, $outputlangsbis);
 							}
 							// $this->_pagefoot($pdf,$object,$outputlangs,1);
 							$pdf->setTopMargin($this->tab_top_newpage);
@@ -670,7 +670,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 							$pdf->useTemplate($tplidx);
 						}
 						if (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD')) {
-							$this->_pagehead($pdf, $object, 0, $outputlangs, $outputlangsbis);
+							$this->_pagehead($pdf, $object, 1, $outputlangs, $outputlangsbis);
 						}
 						$height_note = $posyafter - $this->tab_top_newpage;
 						$pdf->Rect($this->marge_gauche, $this->tab_top_newpage - 1, $tab_width, $height_note + 1);
@@ -692,7 +692,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 								$pdf->useTemplate($tplidx);
 							}
 							if (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD')) {
-								$this->_pagehead($pdf, $object, 0, $outputlangs, $outputlangsbis);
+								$this->_pagehead($pdf, $object, 1, $outputlangs, $outputlangsbis);
 							}
 
 							$posyafter = $this->tab_top_newpage;
@@ -994,7 +994,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 						$pdf->setPage($pagenb);
 						$pdf->setPageOrientation('', 1, 0); // The only function to edit the bottom margin of current page to set it.
 						if (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD')) {
-							$this->_pagehead($pdf, $object, 0, $outputlangs, $outputlangsbis);
+							$this->_pagehead($pdf, $object, 1, $outputlangs, $outputlangsbis);
 						}
 						if (!empty($tplidx)) {
 							$pdf->useTemplate($tplidx);
@@ -1015,7 +1015,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 						}
 						$pagenb++;
 						if (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD')) {
-							$this->_pagehead($pdf, $object, 0, $outputlangs, $outputlangsbis);
+							$this->_pagehead($pdf, $object, 1, $outputlangs, $outputlangsbis);
 						}
 					}
 				}
@@ -1557,7 +1557,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 					$this->_pagefoot($pdf, $object, $outputlangs, 1);
 					$pdf->addPage();
 					if (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD')) {
-						$this->_pagehead($pdf, $object, 0, $outputlangs, $outputlangsbis);
+						$this->_pagehead($pdf, $object, 1, $outputlangs, $outputlangsbis);
 						$pdf->setY($this->tab_top_newpage);
 					} else {
 						$pdf->setY($this->marge_haute);
@@ -1624,7 +1624,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 			if ($posy > $this->page_hauteur - 4 - $this->heightforfooter) {
 				$pdf->addPage();
 				if (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD')) {
-					$this->_pagehead($pdf, $object, 0, $outputlangs, $outputlangsbis);
+					$this->_pagehead($pdf, $object, 1, $outputlangs, $outputlangsbis);
 					$pdf->setY($this->tab_top_newpage);
 				} else {
 					$pdf->setY($this->marge_haute);
