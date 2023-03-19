@@ -3,6 +3,8 @@
 
 NEW: Aρίθμηση σελίδας
 NEW: Εμφάνιση καθαρού ανά κατηγορία Φ.Π.Α. σε ολες τις κατηγορίες. 
+Thanks to avogiatzakis (As32) for code and suggestions
+
 ***** ChangeLog for 2.0.1 compared to 2.0.0 ***** 
  
 FIX: fix new page thanks to avogiatzakis (As32)
