@@ -1,4 +1,9 @@
 # CHANGELOG Mask4Greece FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
+***** ChangeLog for 2.0.2 compared to 2.0.1 ***** 
+
+NEW: Aρίθμηση σελίδας
+NEW: Εμφάνιση καθαρού ανά κατηγορία Φ.Π.Α. σε ολες τις κατηγορίες. 
+Thanks to avogiatzakis (As32) for code and suggestions
 
 ***** ChangeLog for 2.0.1 compared to 2.0.0 ***** 
  
