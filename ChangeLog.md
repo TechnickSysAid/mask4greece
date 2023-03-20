@@ -2,7 +2,7 @@
 
 ***** ChangeLog for 2.0.1 compared to 2.0.0 ***** 
  
-FIX: fix new page thanks to avogiatzakis (As32)
+FIX: #4 fix new page thanks to avogiatzakis (As32)
 
 ## 2.0.0
 
