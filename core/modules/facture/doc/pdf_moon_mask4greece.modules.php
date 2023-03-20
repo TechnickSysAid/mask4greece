@@ -1683,6 +1683,78 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 		$pdf->MultiCell($largcol2, $tab2_hl, price($sign * ($total_ht + (!empty($object->remise) ? $object->remise : 0)), 0, $outputlangs), 0, 'R', 1);
 
+		// Εμφάνιση καθαρού ανά κατηγορία Φ.Π.Α. στο σύνολο   //Το do: Να γίνει σε συγκεντρωτικό πινακάκι για να γλιτώσουμε χώρο.
+		
+		$total_ht_4=0;
+		$total_ht_6=0;		
+		$total_ht_9=0;		
+		$total_ht_13=0;
+		$total_ht_17=0;		
+		$total_ht_24=0;
+		$nblignes = count($object->lines);
+		for ($i = 0 ; $i < $nblignes ; $i++){
+			if ($object->lines[$i]->tva_tx == "4.000"){
+				$total_ht_4 += $object->lines[$i]->total_ht;
+			}elseif ($object->lines[$i]->tva_tx == "6.000"){
+				$total_ht_6 += $object->lines[$i]->total_ht;
+			}elseif ($object->lines[$i]->tva_tx == "9.000"){
+				$total_ht_9 += $object->lines[$i]->total_ht;
+			}elseif ($object->lines[$i]->tva_tx == "13.000"){
+				$total_ht_13 += $object->lines[$i]->total_ht;
+			}elseif ($object->lines[$i]->tva_tx == "17.000"){
+				$total_ht_17 += $object->lines[$i]->total_ht;
+			}elseif ($object->lines[$i]->tva_tx == "24.000"){
+				$total_ht_24 += $object->lines[$i]->total_ht;												
+			}
+		}
+		if ($total_ht_4 > 0) {
+		$index++;
+		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 4%", 0, 'L', 1);
+		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
+		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_4, 0, $outputlangs), 0, 'R', 1);
+		}
+		
+		if ($total_ht_6 > 0) {
+		$index++;
+		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 6%", 0, 'L', 1);
+		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
+		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_6, 0, $outputlangs), 0, 'R', 1);
+		}
+			
+		if ($total_ht_9 > 0) {		
+		$index++;
+		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 9%", 0, 'L', 1);
+		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
+		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_9, 0, $outputlangs), 0, 'R', 1);			
+		}
+		
+		if ($total_ht_13 > 0) {				
+		$index++;
+		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 13%", 0, 'L', 1);
+		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
+		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_13, 0, $outputlangs), 0, 'R', 1);
+		}
+		
+		if ($total_ht_17 > 0) {						
+		$index++;
+		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 17%", 0, 'L', 1);
+		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
+		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_17, 0, $outputlangs), 0, 'R', 1);		
+		}
+		
+		if ($total_ht_24 > 0) {								
+		$index++;
+		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 24%", 0, 'L', 1);
+		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
+		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_24, 0, $outputlangs), 0, 'R', 1);
+		}	
+
 		// Show VAT by rates and total
 		$pdf->SetFillColor(248, 248, 248);
 
@@ -2069,6 +2141,11 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		if (empty($hidetop)) {
 			$pdf->line($this->marge_gauche, $tab_top + $this->tabTitleHeight, $this->page_largeur - $this->marge_droite, $tab_top + $this->tabTitleHeight); // line takes a position y in 2nd parameter and 4th parameter
 		}
+		
+		// Aρίθμηση σελίδας
+		$pdf->SetXY(-25,-5);
+                $pdf->MultiCell(20, 2, $outputlangs->transnoentities("Page").' '.$pdf->PageNo( ), 0, 'R', 0);
+		
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.PublicUnderscore
