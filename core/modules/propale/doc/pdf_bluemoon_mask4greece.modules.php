@@ -1538,6 +1538,11 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 		if (empty($hidetop)) {
 			$pdf->line($this->marge_gauche, $tab_top + $this->tabTitleHeight, $this->page_largeur - $this->marge_droite, $tab_top + $this->tabTitleHeight); // line takes a position y in 2nd parameter and 4th parameter
 		}
+		
+		// Aρίθμηση σελίδας
+		$pdf->SetXY(-25,-5);
+                $pdf->MultiCell(20, 2, $outputlangs->transnoentities("Page").' '.$pdf->PageNo( ), 0, 'R', 0);		
+		
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.PublicUnderscore
