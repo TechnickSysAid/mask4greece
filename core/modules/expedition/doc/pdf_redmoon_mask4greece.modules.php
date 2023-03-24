@@ -4,6 +4,9 @@
  * Copyright (C) 2005-2012 Regis Houssin		<regis.houssin@inodbox.com>
  * Copyright (C) 2014-2015 Marcos García        <marcosgdf@gmail.com>
  * Copyright (C) 2018      Frédéric France      <frederic.france@netlogic.fr>
+ * Copyright (C) 2022-2023  Nick Fragoulis
+ * Copyright (C) 2022-2023  Nikos Drosis            <ndrosis@sysaid.gr>
+ * Copyright (C) 2022-2023  Nikos Drosis            <ndrosis@sysaid.gr>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
