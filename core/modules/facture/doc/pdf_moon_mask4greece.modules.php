@@ -178,7 +178,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		global $conf, $langs, $mysoc;
 
 		// Translations
-		$langs->loadLangs(array("main", "bills"));
+		$langs->loadLangs(array("main", "bills", "mask4greece@mask4greece"));
 
 		$this->db = $db;
 		$this->name = "moon";
@@ -259,14 +259,14 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		}
 
 		// Load translation files required by the page
-		$outputlangs->loadLangs(array("main", "bills", "products", "dict", "companies"));
+		$outputlangs->loadLangs(array("main", "bills", "products", "dict", "companies", "mask4greece@mask4greece"));
 
 		global $outputlangsbis;
 		$outputlangsbis = null;
 		if (!empty($conf->global->PDF_USE_ALSO_LANGUAGE_CODE) && $outputlangs->defaultlang != $conf->global->PDF_USE_ALSO_LANGUAGE_CODE) {
 			$outputlangsbis = new Translate('', $conf);
 			$outputlangsbis->setDefaultLang($conf->global->PDF_USE_ALSO_LANGUAGE_CODE);
-			$outputlangsbis->loadLangs(array("main", "bills", "products", "dict", "companies"));
+			$outputlangsbis->loadLangs(array("main", "bills", "products", "dict", "companies", "mask4greece@mask4greece"));
 		}
 
 		// Show Draft Watermark
@@ -1710,7 +1710,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		if ($total_ht_4 > 0) {
 		$index++;
 		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
-		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 4%", 0, 'L', 1);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, $outputlangs->transnoentities("Net").' '."4%", 0, 'L', 1);
 		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_4, 0, $outputlangs), 0, 'R', 1);
 		}
@@ -1718,7 +1718,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		if ($total_ht_6 > 0) {
 		$index++;
 		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
-		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 6%", 0, 'L', 1);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, $outputlangs->transnoentities("Net").' '."6%", 0, 'L', 1);
 		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_6, 0, $outputlangs), 0, 'R', 1);
 		}
@@ -1726,7 +1726,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		if ($total_ht_9 > 0) {		
 		$index++;
 		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
-		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 9%", 0, 'L', 1);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, $outputlangs->transnoentities("Net").' '."9%", 0, 'L', 1);
 		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_9, 0, $outputlangs), 0, 'R', 1);			
 		}
@@ -1734,7 +1734,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		if ($total_ht_13 > 0) {				
 		$index++;
 		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
-		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 13%", 0, 'L', 1);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, $outputlangs->transnoentities("Net").' '."13%", 0, 'L', 1);
 		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_13, 0, $outputlangs), 0, 'R', 1);
 		}
@@ -1742,7 +1742,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		if ($total_ht_17 > 0) {						
 		$index++;
 		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
-		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 17%", 0, 'L', 1);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, $outputlangs->transnoentities("Net").' '."17%", 0, 'L', 1);
 		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_17, 0, $outputlangs), 0, 'R', 1);		
 		}
@@ -1750,7 +1750,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		if ($total_ht_24 > 0) {								
 		$index++;
 		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
-		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 24%", 0, 'L', 1);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, $outputlangs->transnoentities("Net").' '."24%", 0, 'L', 1);
 		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_24, 0, $outputlangs), 0, 'R', 1);
 		}	
