@@ -2213,12 +2213,15 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		$pdf->SetFont('', 'B', $default_font_size);
 		$pdf->SetXY($posx +13, $posy + 32);
 		// Τυπώνουμε το mydata_type για αυτοματισμό. 
+		if (getDolGlobalInt('MAIN_MULTILANGS') && ($outputlangs->defaultlang != $langs->defaultlang)) { 
+                $title = $outputlangs->transnoentities("PdfInvoiceTitle");
+		} else {
                 $extrafields = new ExtraFields($this->db);
                 $extralabels=$extrafields->fetch_name_optionals_label($object->table_element);
                 $object->fetch($rowid);
-                $object->fetch_optionals($rowid,$extralabels);
-		//$title = $outputlangs->transnoentities("PdfInvoiceTitle");
-		$title = $extrafields->showOutputField('mydata_type', $object->array_options['options_mydata_type'], '', $object->table_element);
+                $object->fetch_optionals($rowid,$extralabels); 
+		$title = $extrafields->showOutputField('mydata_type', $object->array_options['options_mydata_type'], '', $object->table_element);		
+		}
 
 
 		if ($object->type == 1) {
@@ -2372,8 +2375,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		// Αν είναι τιμολόγιο πώλησης εμφανίζουμε και τα παρακάτω
 		$title = $extrafields->showOutputField('mydata_type', $object->array_options['options_mydata_type'], '', $object->table_element);
 		$plate = $extrafields->showOutputField('licence_plate', $object->array_options['options_licence_plate'], '', $object->table_element);
-		
-		if ($title == 'Τιμολόγιο Πώλησης') {
+		if ($title == 'Τιμολόγιο Πώλησης' && getDolGlobalInt('MAIN_MULTILANGS') && ($outputlangs->defaultlang == $langs->defaultlang)) {
 		      $posy += 4;
 		      $pdf->SetFont('','', $default_font_size - 1); 
 		      $pdf->SetXY($posx +13, $posy);
@@ -2604,7 +2606,8 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 	protected function _pagefoot(&$pdf, $object, $outputlangs, $hidefreetext = 0)
 	{
 		$showdetails = getDolGlobalInt('MAIN_GENERATE_DOCUMENTS_SHOW_FOOT_DETAILS', 0);
-		return pdf_pagefoot($pdf, $outputlangs, 'INVOICE_FREE_TEXT', $this->emetteur, $this->marge_basse, $this->marge_gauche, $this->page_hauteur, $object, $showdetails, $hidefreetext, $this->page_largeur, $this->watermark);
+		// Απόκρυψη στοιχείων
+		return pdf_pagefoot($pdf, $outputlangs, 'INVOICE_FREE_TEXT', $this->emetteur->name, $this->marge_basse, $this->marge_gauche, $this->page_hauteur, $object, $showdetails, $hidefreetext, $this->page_largeur, $this->watermark);
 	}
 
 	/**
