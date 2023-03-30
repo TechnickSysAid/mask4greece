@@ -321,7 +321,7 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 				$pdf->SetTextColor(0, 0, 0);
 
 				$tab_top = 90;
-				$tab_top_newpage = (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD) ? 42 : 10);
+				$tab_top_newpage = (empty($conf->global->MAIN_PDF_DONOTREPEAT_HEAD) ? 85 : 10);
 				$tab_height = 130;
 				$tab_height_newpage = 150;
 
