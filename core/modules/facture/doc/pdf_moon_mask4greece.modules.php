@@ -2352,7 +2352,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
                 $object->fetch($rowid);
                 $object->fetch_optionals($rowid,$extralabels);
 		$mark = $extrafields->showOutputField('mydata_reply', $object->array_options['options_mydata_reply'], '', $object->table_element);
-		$pdf->MultiCell($w +5, 3, "ΜΑΡΚ"." : ".dol_substr($mark, 16, -1), '', 'L');
+		$pdf->MultiCell($w +5, 3, "MARK"." : ".dol_substr($mark, 16, -1), '', 'L');
 		
 		$posy += 4;
 		$pdf->SetXY($posx +13, $posy);
@@ -2375,20 +2375,20 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		// Αν είναι τιμολόγιο πώλησης εμφανίζουμε και τα παρακάτω
 		$title = $extrafields->showOutputField('mydata_type', $object->array_options['options_mydata_type'], '', $object->table_element);
 		$plate = $extrafields->showOutputField('licence_plate', $object->array_options['options_licence_plate'], '', $object->table_element);
-		if ($title == 'Τιμολόγιο Πώλησης' && getDolGlobalInt('MAIN_MULTILANGS') && ($outputlangs->defaultlang == $langs->defaultlang)) {
+		if ($title == 'Τιμολόγιο Πώλησης' || getDolGlobalInt('MAIN_MULTILANGS') || ($outputlangs->defaultlang == $langs->defaultlang)) {
 		      $posy += 4;
 		      $pdf->SetFont('','', $default_font_size - 1); 
 		      $pdf->SetXY($posx +13, $posy);
-		      $pdf->MultiCell($w +5, 3, 'Σκοπός Διακίνησης: Πώληση', '', 'L');
+		      $pdf->MultiCell($w +5, 3, $outputlangs->transnoentities("Shipmentpurpose")." : ".'Πώληση', '', 'L');
 		      $posy += 4;
 		      $pdf->SetFont('','', $default_font_size - 1); 
 		      $pdf->SetXY($posx +13, $posy);
       		      // Χρησιμοποιούμε το mark για να συμπληρώσουμε την ώρα αποστολής
-		      $pdf->MultiCell($w, 3, 'Ώρα αποστολής: '.dol_substr($mark, 9, -18), '', 'L');
+		      $pdf->MultiCell($w, 3, $outputlangs->transnoentities("Shipmenttime")." : ".dol_substr($mark, 9, -18), '', 'L');
 		      $posy += 4;
 		      $pdf->SetFont('','', $default_font_size - 1); 
 		      $pdf->SetXY($posx +13, $posy);
-		      $pdf->MultiCell($w, 3, 'Αρ. οχήματος: '.$plate, '', 'L'); }
+		      $pdf->MultiCell($w, 3, $outputlangs->transnoentities("Vehicleregistrationplate")." : ".$plate, '', 'L'); }
 		      
 		if ($object->type != 2) {
 			$posy += 3;
