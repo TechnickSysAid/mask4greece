@@ -2392,7 +2392,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		      
 		if ($object->type != 2) {
 			$posy += 3;
-			$pdf->SetXY($posx +13, $posy);
+			$pdf->SetXY($posx +13, $posy +1);
 
 			$title = $outputlangs->transnoentities("DateDue");
 			if (!empty($conf->global->PDF_USE_ALSO_LANGUAGE_CODE) && is_object($outputlangsbis)) {
@@ -2462,20 +2462,20 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 				$posy = $pdf->getY();
 			}
 			
-				// Show sender proffesion
-		                $pdf->SetXY($posx -15, $posy);
-				$pdf->SetFont('', '', $default_font_size - 1);			
-				$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($this->emetteur->idprof1), 0, 'L');
+			// Show sender proffesion
+		        $pdf->SetXY($posx -15, $posy);
+			$pdf->SetFont('', '', $default_font_size - 1);			
+			$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($this->emetteur->idprof1), 0, 'L');
 			
-				// Show sender full address
-				$pdf->SetXY($posx -15, $posy +4);
-				$pdf->SetFont('', '', $default_font_size - 1);			
-				$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($this->emetteur->address).' - '.$outputlangs->convToOutputCharset($this->emetteur->town).' - '.$outputlangs->convToOutputCharset($this->emetteur->zip), 0, 'L');	
+			// Show sender full address
+			$pdf->SetXY($posx -15, $posy +4);
+			$pdf->SetFont('', '', $default_font_size - 1);			
+			$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($this->emetteur->address).' - '.$outputlangs->convToOutputCharset($this->emetteur->town).' - '.$outputlangs->convToOutputCharset($this->emetteur->zip), 0, 'L');	
 				
-			        // Show sender vat		
-				$pdf->SetXY($posx -15,$posy +8);
-				$pdf->SetFont('', '', $default_font_size - 1); 
-				$pdf->MultiCell(100, 4, $outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->convToOutputCharset($this->emetteur->tva_intra).' - '.$outputlangs->transnoentities("ProfId2").': '.$outputlangs->convToOutputCharset($this->emetteur->idprof2), 0, 'L'); //
+			// Show sender vat		
+			$pdf->SetXY($posx -15,$posy +8);
+			$pdf->SetFont('', '', $default_font_size - 1); 
+			$pdf->MultiCell(100, 4, $outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->convToOutputCharset($this->emetteur->tva_intra).' - '.$outputlangs->transnoentities("Taxauthority").': '.$outputlangs->convToOutputCharset($this->emetteur->idprof2), 0, 'L'); //
 					
 			// Show sender contact information
 			$pdf->SetXY($posx -15, $posy +12); 
@@ -2550,14 +2550,14 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 			
 			// Show recipient vat
 			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy + 9);
+			$pdf->SetXY($posx + 2, $posy + 7);
 			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
 			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
 			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->tva_intra), 0, 'L'); //				
 			
 			// Show recipient full address
 			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy + 6);
+			$pdf->SetXY($posx + 2, $posy + 11);
 			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
 			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
 			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->address).' - '.$outputlangs->transnoentities($object->thirdparty->town).' - '.$outputlangs->transnoentities($object->thirdparty->zip), 0, 'L');	
@@ -2618,10 +2618,10 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 	 *      @return	int								Return height of bottom margin including footer text
 	 */
 	protected function _pagefoot(&$pdf, $object, $outputlangs, $hidefreetext = 0)
-	{
+	{		
 		$showdetails = getDolGlobalInt('MAIN_GENERATE_DOCUMENTS_SHOW_FOOT_DETAILS', 0);
 		// Απόκρυψη στοιχείων
-		return pdf_pagefoot($pdf, $outputlangs, 'INVOICE_FREE_TEXT', $this->emetteur->name, $this->marge_basse, $this->marge_gauche, $this->page_hauteur, $object, $showdetails, $hidefreetext, $this->page_largeur, $this->watermark);
+		return pdf_pagefoot($pdf, $outputlangs, 'INVOICE_FREE_TEXT', $this->emetteur=0, $this->marge_basse, $this->marge_gauche, $this->page_hauteur, $object, $showdetails, $hidefreetext, $this->page_largeur, $this->watermark);
 	}
 
 	/**
