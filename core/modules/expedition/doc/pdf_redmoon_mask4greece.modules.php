@@ -168,13 +168,13 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 		if (!empty($conf->global->MAIN_USE_FPDF)) $outputlangs->charset_output = 'ISO-8859-1';
 
 		// Load traductions files required by page
-		$outputlangs->loadLangs(array("main", "bills", "products", "dict", "companies", "propal", "deliveries", "sendings", "productbatch"));
+		$outputlangs->loadLangs(array("main", "bills", "products", "dict", "companies", "propal", "deliveries", "sendings", "productbatch", "mask4greece@mask4greece"));
 
 		if (!empty($conf->global->PDF_USE_ALSO_LANGUAGE_CODE) && $outputlangs->defaultlang != $conf->global->PDF_USE_ALSO_LANGUAGE_CODE) {
 			global $outputlangsbis;
 			$outputlangsbis = new Translate('', $conf);
 			$outputlangsbis->setDefaultLang($conf->global->PDF_USE_ALSO_LANGUAGE_CODE);
-			$outputlangsbis->loadLangs(array("main", "bills", "products", "dict", "companies", "propal", "deliveries", "sendings", "productbatch"));
+			$outputlangsbis->loadLangs(array("main", "bills", "products", "dict", "companies", "propal", "deliveries", "sendings", "productbatch", "mask4greece@mask4greece"));
 		}
 
 		$nblines = count($object->lines);
@@ -939,40 +939,47 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 		$posx = $this->page_largeur - $w - $this->marge_droite;
 		$posy = $this->marge_haute;
 
-		$pdf->SetFont('', 'B', $default_font_size + 2);
-		$pdf->SetXY($posx, $posy);
+
+
+
+		$pdf->SetFont('','', $default_font_size + 1);                 
+		$pdf->SetXY($posx +13, $posy + 32);
 		$pdf->SetTextColor(0, 0, 60);
-		$title = $outputlangs->transnoentities("SendingSheet");
-		$pdf->MultiCell($w, 4, $title, '', 'R');
-
-		$pdf->SetFont('', '', $default_font_size + 1);
-
-		$posy += 5;
-
-		$pdf->SetXY($posx, $posy);
-		$pdf->SetTextColor(0, 0, 60);
-		$pdf->MultiCell($w, 4, $outputlangs->transnoentities("RefSending")." : ".$object->ref, '', 'R');
+		$pdf->MultiCell($w, 4, $outputlangs->transnoentities("SendingSheet")." : ".$object->ref, '', 'L');
+                $posy += 4;
+		$pdf->SetFont('','', $default_font_size - 1);                 
+		$pdf->SetXY($posx +13, $posy + 32);
+		$pdf->MultiCell($w, 4, 'Σκοπός Διακίνησης: Πώληση', '', 'L');
+                $posy += 4;
+                $pdf->SetFont('','', $default_font_size - 1); 				
+		$pdf->SetXY($posx +13, $posy + 32);
+      		// Χρησιμοποιούμε το mark για να συμπληρώσουμε την ώρα αποστολής
+		$pdf->MultiCell($w, 4, 'Ώρα αποστολής: 2', '', 'L');
+                $posy += 4;
+                $pdf->SetFont('','', $default_font_size - 1); 
+		$pdf->SetXY($posx +13, $posy + 32);
+                $pdf->MultiCell($w, 4, 'Αρ. οχήματος: 1', '', 'L');
 
 		// Date planned delivery
 		if (!empty($object->date_delivery))
 		{
     			$posy += 4;
-    			$pdf->SetXY($posx, $posy);
+		        $pdf->SetXY($posx +13, $posy + 32);
     			$pdf->SetTextColor(0, 0, 60);
-    			$pdf->MultiCell($w, 4, $outputlangs->transnoentities("DateDeliveryPlanned")." : ".dol_print_date($object->date_delivery, "day", false, $outputlangs, true), '', 'R');
+    			$pdf->MultiCell($w, 4, $outputlangs->transnoentities("DateDeliveryPlanned")." : ".dol_print_date($object->date_delivery, "day", false, $outputlangs, true), '', 'L');
 		}
 
 		if (!empty($object->thirdparty->code_client))
 		{
 			$posy += 4;
-			$pdf->SetXY($posx, $posy);
+		        $pdf->SetXY($posx +13, $posy + 32);
 			$pdf->SetTextColor(0, 0, 60);
-			$pdf->MultiCell($w, 3, $outputlangs->transnoentities("CustomerCode")." : ".$outputlangs->transnoentities($object->thirdparty->code_client), '', 'R');
+			$pdf->MultiCell($w, 4, $outputlangs->transnoentities("CustomerCode")." : ".$outputlangs->transnoentities($object->thirdparty->code_client), '', 'L');
 		}
 
 
 		$pdf->SetFont('', '', $default_font_size + 3);
-		$Yoff = 25;
+		$Yoff = 57;
 
 		// Add list of linked orders
 		$origin = $object->origin;
@@ -990,15 +997,15 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 			{
 			    //$linkedobject->fetchObjectLinked()   Get all linked object to the $linkedobject (commonly order) into $linkedobject->linkedObjects
 
-				$pdf->SetFont('', '', $default_font_size - 2);
+				$pdf->SetFont('', '', $default_font_size - 1);
 				$text = $linkedobject->ref;
 				if ($linkedobject->ref_client) $text .= ' ('.$linkedobject->ref_client.')';
-				$Yoff = $Yoff + 8;
-				$pdf->SetXY($this->page_largeur - $this->marge_droite - $w, $Yoff);
-				$pdf->MultiCell($w, 2, $outputlangs->transnoentities("RefOrder")." : ".$outputlangs->transnoentities($text), 0, 'R');
-				$Yoff = $Yoff + 3;
-				$pdf->SetXY($this->page_largeur - $this->marge_droite - $w, $Yoff);
-				$pdf->MultiCell($w, 2, $outputlangs->transnoentities("OrderDate")." : ".dol_print_date($linkedobject->date, "day", false, $outputlangs, true), 0, 'R');
+
+		        $pdf->SetXY($posx +13, $posy + 36);
+				$pdf->MultiCell($w, 4, $outputlangs->transnoentities("RefOrder")." : ".$outputlangs->transnoentities($text), 0, 'L');
+
+		        $pdf->SetXY($posx +13, $posy + 40);
+				$pdf->MultiCell($w, 4, $outputlangs->transnoentities("OrderDate")." : ".dol_print_date($linkedobject->date, "day", false, $outputlangs, true), 0, 'L');
 			}
 		}
 
@@ -1018,11 +1025,11 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 		 	$carac_emetteur .= pdf_build_address($outputlangs, $this->emetteur, $object->thirdparty, '', 0, 'source', $object);
 
 			// Show sender
-			$posy = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 40 : 42;
+			///$posy = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 40 : 42;
 			$posy += $top_shift;
-			$posy=40; //
+			$posy=5; //
 			$posx = $this->marge_gauche;
-            		$posx=25; //
+            		$posx=118; //
 			if (!empty($conf->global->MAIN_INVERT_SENDER_RECIPIENT)) {
 			$posx = $this->page_largeur - $this->marge_droite - 80;
 			}
@@ -1037,8 +1044,6 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 			        $pdf->SetXY($posx -5, $posy); 
                                 $pdf->SetFillColor(255,255,255); 
 				$pdf->MultiCell($widthrecbox, $hautcadre, "", 0, 'R', 1); 
-				$pdf->SetXY($posx -15, $posy -2); 
-				$pdf->MultiCell(100, 5, $outputlangs->transnoentities("Sender").":", 0, 'L');
                          }
 
 			// Show sender name
@@ -1091,30 +1096,50 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 			$carac_client = pdf_build_address($outputlangs, $this->emetteur, $object->thirdparty, (!empty($object->contact) ? $object->contact : null), $usecontact, 'targetwithdetails', $object);
 
 			// Show recipient
-			$widthrecbox = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 92 : 100;
-			if ($this->page_largeur < 210) $widthrecbox = 84; // To work with US executive format
-			$posy = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 40 : 42;
-			$posx = $this->page_largeur - $this->marge_droite - $widthrecbox;
-			if (!empty($conf->global->MAIN_INVERT_SENDER_RECIPIENT)) $posx = $this->marge_gauche;
+			///$widthrecbox = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 92 : 100;
+			$widthrecbox=85;
+			if ($this->page_largeur < 210) {
+				$widthrecbox=85; // To work with US executive format
+			}
+			///$posy = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 40 : 42;
+			///$posy += $top_shift;
+			$posy=42; //
+			$hautcadrec=20;
+			///$posx = $this->page_largeur - $this->marge_droite - $widthrecbox;
+            $posx=10; //
+
+			if (!empty($conf->global->MAIN_INVERT_SENDER_RECIPIENT)) {
+				$posx = $this->marge_gauche;
+			}
 
 			// Show recipient frame
-			$pdf->SetTextColor(0, 0, 0);
-			$pdf->SetFont('', '', $default_font_size - 2);
-			$pdf->SetXY($posx + 2, $posy - 5);
-			$pdf->MultiCell($widthrecbox, 5, $outputlangs->transnoentities("Recipient").":", 0, 'L');
-			$pdf->Rect($posx, $posy, $widthrecbox, $hautcadre);
+			if (empty($conf->global->MAIN_PDF_NO_RECIPENT_FRAME)) {
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetFont('', '', $default_font_size - 2);
+				$pdf->SetXY($posx + 2, $posy - 5);
+				$pdf->MultiCell($widthrecbox, 5, $outputlangs->transnoentities("BillTo"), 0, $ltrdirection);
+				$pdf->Rect($posx, $posy, $widthrecbox, $hautcadre+10);
+			}
 
 			// Show recipient name
-			$pdf->SetXY($posx + 2, $posy + 3);
+			$pdf->SetXY($posx + 2, $posy + 1);
 			$pdf->SetFont('', 'B', $default_font_size);
-			$pdf->MultiCell($widthrecbox, 2, $carac_client_name, 0, 'L');
-
+			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client_name, 0, $ltrdirection);
+			$pdf->MultiCell($widthrecbox, 0, $carac_client_name, 0, 'L'); //
 			$posy = $pdf->getY();
+		if (empty($conf->global->MAIN_PDF_HIDE_CUSTOMER_CODE) && $object->thirdparty->code_client) {
+			$pdf->SetFont('', '', $default_font_size - 1);
+			$pdf->SetXY($posx + 2, $posy + 3);
 
+			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->code_client), 0, 'L');
+		}	
+			$posy = $pdf->getY();
 			// Show recipient information
 			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy);
-			$pdf->MultiCell($widthrecbox, 4, $carac_client, 0, 'L');
+			$pdf->SetXY($posx + 2, $posy + 3);
+			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
+			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
+			$pdf->MultiCell($widthrecbox, 0, $carac_client, 0, 'L'); //
 		}
 
 		$pdf->SetTextColor(0, 0, 0);
