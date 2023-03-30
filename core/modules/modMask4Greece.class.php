@@ -487,8 +487,13 @@ class modMask4greece extends DolibarrModules
 		// Create extrafields during init
 		include_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
 		$extrafields = new ExtraFields($this->db);
-		$result=$extrafields->addExtraField('licence_plate', "Αρ. Οχήματος", 'select',  203, '', 'facture',   0, 0, '', array('options'=>array('0'=>'-','1'=>'ΑΒΓ 1234','2'=>'ΔΕΖ 1234','3'=>'ΗΘΙ 1234','4'=>'ΚΛΜ 1234','5'=>'ΝΞΟ 1234')), 1,'', 1, 1, '', '1', '', '');
-		$result5=$extrafields->update('licence_plate', "Αρ. Οχήματος", 'select',  '', 'facture',   0, 0, 203, array('options'=>array('0'=>'-','1'=>'ΑΒΓ 1234','2'=>'ΔΕΖ 1234','3'=>'ΗΘΙ 1234','4'=>'ΚΛΜ 1234','5'=>'ΝΞΟ 1234')), 1,'', 1, "Eπιλέξτε όχημα", '', '', '', '');
+		$result=$extrafields->addExtraField('licence_plate', "Αρ. Οχήματος", 'select',  211, '', 'facture',   0, 0, '', array('options'=>array('0'=>'-','1'=>'ΑΒΓ 1234','2'=>'ΔΕΖ 1234','3'=>'ΗΘΙ 1234','4'=>'ΚΛΜ 1234','5'=>'ΝΞΟ 1234')), 1,'', 1, 1, '', '1', '', '');
+		$result1=$extrafields->update('licence_plate', "Αρ. Οχήματος", 'select',  '', 'facture',   0, 0, 211, array('options'=>array('0'=>'-','1'=>'ΑΒΓ 1234','2'=>'ΔΕΖ 1234','3'=>'ΗΘΙ 1234','4'=>'ΚΛΜ 1234','5'=>'ΝΞΟ 1234')), 1,'', 1, "Eπιλέξτε όχημα", '', '', '', '');
+		$result=$extrafields->addExtraField('dalicence_plate', "Αρ. Οχήματος", 'select',  212, '', 'expedition',   0, 0, '', array('options'=>array('0'=>'-','1'=>'ΑΒΓ 1234','2'=>'ΔΕΖ 1234','3'=>'ΗΘΙ 1234','4'=>'ΚΛΜ 1234','5'=>'ΝΞΟ 1234')), 1,'', 1, 1, '', '1', '', '');
+		$result1=$extrafields->update('dalicence_plate', "Αρ. Οχήματος", 'select',  '', 'expedition',   0, 0, 212, array('options'=>array('0'=>'-','1'=>'ΑΒΓ 1234','2'=>'ΔΕΖ 1234','3'=>'ΗΘΙ 1234','4'=>'ΚΛΜ 1234','5'=>'ΝΞΟ 1234')), 1,'', 1, "Eπιλέξτε όχημα", '', '', '', '');
+		$result=$extrafields->addExtraField('purpose', "Σκοπός διακίνησης", 'select',  213, '', 'expedition',   0, 0, '', array('options'=>array('0'=>'Πώληση','1'=>'Επισκευή','2'=>'Επιστροφή','3'=>'Συντήρηση')), 1,'', 1, 1, '', '1', '', '');
+		$result1=$extrafields->update('purpose', "Σκοπός διακίνησης", 'select',  '', 'expedition',   0, 0, 213, array('options'=>array('0'=>'Πώληση','1'=>'Επισκευή','2'=>'Επιστροφή','3'=>'Συντήρηση')), 1,'', 1, "Eπιλέξτε σκοπό διακίνησης", '', '', '', '');
+
 		//$result1=$extrafields->addExtraField('mask4greece_myattr1', "New Attr 1 label", 'boolean', 1,  3, 'thirdparty',   0, 0, '', '', 1, '', 0, 0, '', '', 'mask4greece@mask4greece', '$conf->mask4greece->enabled');
 		//$result2=$extrafields->addExtraField('mask4greece_myattr2', "New Attr 2 label", 'varchar', 1, 10, 'project',      0, 0, '', '', 1, '', 0, 0, '', '', 'mask4greece@mask4greece', '$conf->mask4greece->enabled');
 		//$result3=$extrafields->addExtraField('mask4greece_myattr3', "New Attr 3 label", 'varchar', 1, 10, 'bank_account', 0, 0, '', '', 1, '', 0, 0, '', '', 'mask4greece@mask4greece', '$conf->mask4greece->enabled');
