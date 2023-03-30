@@ -1070,7 +1070,7 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 			        // Show sender vat		
 				$pdf->SetXY($posx -15,$posy +8);
 				$pdf->SetFont('', '', $default_font_size - 1); 
-				$pdf->MultiCell(100, 4, $outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->convToOutputCharset($this->emetteur->tva_intra).' - '.$outputlangs->transnoentities("ProfId2").': '.$outputlangs->convToOutputCharset($this->emetteur->idprof2), 0, 'L'); //
+				$pdf->MultiCell(100, 4, $outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->convToOutputCharset($this->emetteur->tva_intra).' - '.$outputlangs->transnoentities("Taxauthority").': '.$outputlangs->convToOutputCharset($this->emetteur->idprof2), 0, 'L'); //
 					
 			// Show sender contact information
 			$pdf->SetXY($posx -15, $posy +12); 
