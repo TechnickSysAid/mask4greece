@@ -938,10 +938,13 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 
 		$posx = $this->page_largeur - $w - $this->marge_droite;
 		$posy = $this->marge_haute;
-
-
-
-
+                // Εμφανίζουμε και τα παρακάτω
+                $extrafields = new ExtraFields($this->db);
+                $extralabels=$extrafields->fetch_name_optionals_label($object->table_element);
+                $object->fetch($rowid);
+                $object->fetch_optionals($rowid,$extralabels);
+                $shippurpose = $extrafields->showOutputField('purpose', $object->array_options['options_purpose'], '', $object->table_element);
+                $plate = $extrafields->showOutputField('dalicence_plate', $object->array_options['options_dalicence_plate'], '', $object->table_element);
 		$pdf->SetFont('','', $default_font_size + 1);                 
 		$pdf->SetXY($posx +13, $posy + 32);
 		$pdf->SetTextColor(0, 0, 60);
@@ -949,15 +952,15 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
                 $posy += 4;
 		$pdf->SetFont('','', $default_font_size - 1);                 
 		$pdf->SetXY($posx +13, $posy + 32);
-		$pdf->MultiCell($w, 4, $outputlangs->transnoentities("Shipment purpose"): 'Πώληση', '', 'L');
+		$pdf->MultiCell($w, 4, $outputlangs->transnoentities("Shipmentpurpose")." : ".$shippurpose, '', 'L');
                 $posy += 4;
                 $pdf->SetFont('','', $default_font_size - 1); 				
 		$pdf->SetXY($posx +13, $posy + 32);
-		$pdf->MultiCell($w, 4, $outputlangs->transnoentities("Shipment time"): '2', '', 'L');
+		$pdf->MultiCell($w, 4, $outputlangs->transnoentities("Shipmenttime")." : ".' ', '', 'L');
                 $posy += 4;
                 $pdf->SetFont('','', $default_font_size - 1); 
 		$pdf->SetXY($posx +13, $posy + 32);
-                $pdf->MultiCell($w, 4, $outputlangs->transnoentities("Vehicle registration plate"): '1', '', 'L');
+                $pdf->MultiCell($w, 4, $outputlangs->transnoentities("Vehicleregistrationplate")." : ".$plate, '', 'L');
 
 		// Date planned delivery
 		if (!empty($object->date_delivery))
