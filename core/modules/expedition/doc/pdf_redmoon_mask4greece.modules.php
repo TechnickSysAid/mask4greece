@@ -949,16 +949,15 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
                 $posy += 4;
 		$pdf->SetFont('','', $default_font_size - 1);                 
 		$pdf->SetXY($posx +13, $posy + 32);
-		$pdf->MultiCell($w, 4, 'Σκοπός Διακίνησης: Πώληση', '', 'L');
+		$pdf->MultiCell($w, 4, $outputlangs->transnoentities("Shipment purpose"): 'Πώληση', '', 'L');
                 $posy += 4;
                 $pdf->SetFont('','', $default_font_size - 1); 				
 		$pdf->SetXY($posx +13, $posy + 32);
-      		// Χρησιμοποιούμε το mark για να συμπληρώσουμε την ώρα αποστολής
-		$pdf->MultiCell($w, 4, 'Ώρα αποστολής: 2', '', 'L');
+		$pdf->MultiCell($w, 4, $outputlangs->transnoentities("Shipment time"): '2', '', 'L');
                 $posy += 4;
                 $pdf->SetFont('','', $default_font_size - 1); 
 		$pdf->SetXY($posx +13, $posy + 32);
-                $pdf->MultiCell($w, 4, 'Αρ. οχήματος: 1', '', 'L');
+                $pdf->MultiCell($w, 4, $outputlangs->transnoentities("Vehicle registration plate"): '1', '', 'L');
 
 		// Date planned delivery
 		if (!empty($object->date_delivery))
