@@ -949,7 +949,12 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 		$pdf->SetFont('','', $default_font_size + 1);                 
 		$pdf->SetXY($posx +13, $posy + 32);
 		$pdf->SetTextColor(0, 0, 60);
+		if (getDolGlobalInt('MAIN_MULTILANGS') && ($outputlangs->defaultlang != $langs->defaultlang)) { 		
 		$pdf->MultiCell($w, 4, $outputlangs->transnoentities("SendingSheet")." : ".$object->ref, '', 'L');
+		// Το παραπάνω βγάζει "Φύλλο αποστολής" αντι για "Δελτίο αποστολής" 
+		} else {
+		$pdf->MultiCell($w, 4, $outputlangs->transnoentities("Δελτίο αποστολής")." : ".$object->ref, '', 'L');
+		}				
                 $posy += 4;
 		$pdf->SetFont('','', $default_font_size - 1);                 
 		$pdf->SetXY($posx +13, $posy + 32);
