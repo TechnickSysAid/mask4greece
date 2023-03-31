@@ -2462,7 +2462,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 				$posy = $pdf->getY();
 			}
 			
-			// Show sender proffesion
+			// Show sender profesion
 		        $pdf->SetXY($posx -15, $posy);
 			$pdf->SetFont('', '', $default_font_size - 1);			
 			$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($this->emetteur->idprof1), 0, 'L');
@@ -2541,12 +2541,12 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		}	
 			$posy = $pdf->getY();
 			
-			// Show recipient proffesion
+			// Show recipient profesion
 			$pdf->SetFont('', '', $default_font_size - 1);
 			$pdf->SetXY($posx + 2, $posy + 3);
 			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
 			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
-			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("Proffesion").': '.$outputlangs->transnoentities($object->thirdparty->idprof1), 0, 'L'); //
+			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("Profesion").': '.$outputlangs->transnoentities($object->thirdparty->idprof1), 0, 'L'); //
 			
 			// Show recipient vat
 			$pdf->SetFont('', '', $default_font_size - 1);
