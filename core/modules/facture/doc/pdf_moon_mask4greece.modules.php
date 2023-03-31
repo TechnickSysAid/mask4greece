@@ -178,7 +178,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		global $conf, $langs, $mysoc;
 
 		// Translations
-		$langs->loadLangs(array("main", "bills"));
+		$langs->loadLangs(array("main", "bills", "mask4greece@mask4greece"));
 
 		$this->db = $db;
 		$this->name = "moon";
@@ -259,14 +259,14 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		}
 
 		// Load translation files required by the page
-		$outputlangs->loadLangs(array("main", "bills", "products", "dict", "companies"));
+		$outputlangs->loadLangs(array("main", "bills", "products", "dict", "companies", "mask4greece@mask4greece"));
 
 		global $outputlangsbis;
 		$outputlangsbis = null;
 		if (!empty($conf->global->PDF_USE_ALSO_LANGUAGE_CODE) && $outputlangs->defaultlang != $conf->global->PDF_USE_ALSO_LANGUAGE_CODE) {
 			$outputlangsbis = new Translate('', $conf);
 			$outputlangsbis->setDefaultLang($conf->global->PDF_USE_ALSO_LANGUAGE_CODE);
-			$outputlangsbis->loadLangs(array("main", "bills", "products", "dict", "companies"));
+			$outputlangsbis->loadLangs(array("main", "bills", "products", "dict", "companies", "mask4greece@mask4greece"));
 		}
 
 		// Show Draft Watermark
@@ -1710,7 +1710,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		if ($total_ht_4 > 0) {
 		$index++;
 		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
-		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 4%", 0, 'L', 1);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, $outputlangs->transnoentities("Net").' '."4%", 0, 'L', 1);
 		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_4, 0, $outputlangs), 0, 'R', 1);
 		}
@@ -1718,7 +1718,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		if ($total_ht_6 > 0) {
 		$index++;
 		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
-		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 6%", 0, 'L', 1);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, $outputlangs->transnoentities("Net").' '."6%", 0, 'L', 1);
 		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_6, 0, $outputlangs), 0, 'R', 1);
 		}
@@ -1726,7 +1726,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		if ($total_ht_9 > 0) {		
 		$index++;
 		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
-		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 9%", 0, 'L', 1);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, $outputlangs->transnoentities("Net").' '."9%", 0, 'L', 1);
 		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_9, 0, $outputlangs), 0, 'R', 1);			
 		}
@@ -1734,7 +1734,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		if ($total_ht_13 > 0) {				
 		$index++;
 		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
-		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 13%", 0, 'L', 1);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, $outputlangs->transnoentities("Net").' '."13%", 0, 'L', 1);
 		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_13, 0, $outputlangs), 0, 'R', 1);
 		}
@@ -1742,7 +1742,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		if ($total_ht_17 > 0) {						
 		$index++;
 		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
-		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 17%", 0, 'L', 1);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, $outputlangs->transnoentities("Net").' '."17%", 0, 'L', 1);
 		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_17, 0, $outputlangs), 0, 'R', 1);		
 		}
@@ -1750,7 +1750,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		if ($total_ht_24 > 0) {								
 		$index++;
 		$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
-		$pdf->MultiCell($col2x-$col1x, $tab2_hl, "Καθαρή αξία 24%", 0, 'L', 1);
+		$pdf->MultiCell($col2x-$col1x, $tab2_hl, $outputlangs->transnoentities("Net").' '."24%", 0, 'L', 1);
 		$pdf->SetXY($col2x, $tab2_top + $tab2_hl * $index);
 		$pdf->MultiCell($largcol2, $tab2_hl, price($total_ht_24, 0, $outputlangs), 0, 'R', 1);
 		}	
@@ -2213,12 +2213,15 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		$pdf->SetFont('', 'B', $default_font_size);
 		$pdf->SetXY($posx +13, $posy + 32);
 		// Τυπώνουμε το mydata_type για αυτοματισμό. 
+		if (getDolGlobalInt('MAIN_MULTILANGS') && ($outputlangs->defaultlang != $langs->defaultlang)) { 
+                $title = $outputlangs->transnoentities("PdfInvoiceTitle");
+		} else {
                 $extrafields = new ExtraFields($this->db);
                 $extralabels=$extrafields->fetch_name_optionals_label($object->table_element);
                 $object->fetch($rowid);
-                $object->fetch_optionals($rowid,$extralabels);
-		//$title = $outputlangs->transnoentities("PdfInvoiceTitle");
-		$title = $extrafields->showOutputField('mydata_type', $object->array_options['options_mydata_type'], '', $object->table_element);
+                $object->fetch_optionals($rowid,$extralabels); 
+		$title = $extrafields->showOutputField('mydata_type', $object->array_options['options_mydata_type'], '', $object->table_element);		
+		}
 
 
 		if ($object->type == 1) {
@@ -2349,7 +2352,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
                 $object->fetch($rowid);
                 $object->fetch_optionals($rowid,$extralabels);
 		$mark = $extrafields->showOutputField('mydata_reply', $object->array_options['options_mydata_reply'], '', $object->table_element);
-		$pdf->MultiCell($w +5, 3, "ΜΑΡΚ"." : ".dol_substr($mark, 16, -1), '', 'L');
+		$pdf->MultiCell($w +5, 3, "MARK"." : ".dol_substr($mark, 16, -1), '', 'L');
 		
 		$posy += 4;
 		$pdf->SetXY($posx +13, $posy);
@@ -2372,25 +2375,24 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		// Αν είναι τιμολόγιο πώλησης εμφανίζουμε και τα παρακάτω
 		$title = $extrafields->showOutputField('mydata_type', $object->array_options['options_mydata_type'], '', $object->table_element);
 		$plate = $extrafields->showOutputField('licence_plate', $object->array_options['options_licence_plate'], '', $object->table_element);
-		
-		if ($title == 'Τιμολόγιο Πώλησης') {
+		if ($title == 'Τιμολόγιο Πώλησης' || getDolGlobalInt('MAIN_MULTILANGS') || ($outputlangs->defaultlang == $langs->defaultlang)) {
 		      $posy += 4;
 		      $pdf->SetFont('','', $default_font_size - 1); 
 		      $pdf->SetXY($posx +13, $posy);
-		      $pdf->MultiCell($w +5, 3, 'Σκοπός Διακίνησης: Πώληση', '', 'L');
+		      $pdf->MultiCell($w +5, 3, $outputlangs->transnoentities("Shipmentpurpose")." : ".'Πώληση', '', 'L');
 		      $posy += 4;
 		      $pdf->SetFont('','', $default_font_size - 1); 
 		      $pdf->SetXY($posx +13, $posy);
       		      // Χρησιμοποιούμε το mark για να συμπληρώσουμε την ώρα αποστολής
-		      $pdf->MultiCell($w, 3, 'Ώρα αποστολής: '.dol_substr($mark, 9, -18), '', 'L');
+		      $pdf->MultiCell($w, 3, $outputlangs->transnoentities("Shipmenttime")." : ".dol_substr($mark, 9, -18), '', 'L');
 		      $posy += 4;
 		      $pdf->SetFont('','', $default_font_size - 1); 
 		      $pdf->SetXY($posx +13, $posy);
-		      $pdf->MultiCell($w, 3, 'Αρ. οχήματος: '.$plate, '', 'L'); }
+		      $pdf->MultiCell($w, 3, $outputlangs->transnoentities("Vehicleregistrationplate")." : ".$plate, '', 'L'); }
 		      
 		if ($object->type != 2) {
 			$posy += 3;
-			$pdf->SetXY($posx +13, $posy);
+			$pdf->SetXY($posx +13, $posy +1);
 
 			$title = $outputlangs->transnoentities("DateDue");
 			if (!empty($conf->global->PDF_USE_ALSO_LANGUAGE_CODE) && is_object($outputlangsbis)) {
@@ -2460,20 +2462,20 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 				$posy = $pdf->getY();
 			}
 			
-				// Show sender proffesion
-		                $pdf->SetXY($posx -15, $posy);
-				$pdf->SetFont('', '', $default_font_size - 1);			
-				$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($this->emetteur->idprof1), 0, 'L');
+			// Show sender profesion
+		        $pdf->SetXY($posx -15, $posy);
+			$pdf->SetFont('', '', $default_font_size - 1);			
+			$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($this->emetteur->idprof1), 0, 'L');
 			
-				// Show sender full address
-				$pdf->SetXY($posx -15, $posy +4);
-				$pdf->SetFont('', '', $default_font_size - 1);			
-				$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($this->emetteur->address).' - '.$outputlangs->convToOutputCharset($this->emetteur->town).' - '.$outputlangs->convToOutputCharset($this->emetteur->zip), 0, 'L');	
+			// Show sender full address
+			$pdf->SetXY($posx -15, $posy +4);
+			$pdf->SetFont('', '', $default_font_size - 1);			
+			$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($this->emetteur->address).' - '.$outputlangs->convToOutputCharset($this->emetteur->town).' - '.$outputlangs->convToOutputCharset($this->emetteur->zip), 0, 'L');	
 				
-			        // Show sender vat		
-				$pdf->SetXY($posx -15,$posy +8);
-				$pdf->SetFont('', '', $default_font_size - 1); 
-				$pdf->MultiCell(100, 4, $outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->convToOutputCharset($this->emetteur->tva_intra).' - '.$outputlangs->transnoentities("ProfId2").': '.$outputlangs->convToOutputCharset($this->emetteur->idprof2), 0, 'L'); //
+			// Show sender vat		
+			$pdf->SetXY($posx -15,$posy +8);
+			$pdf->SetFont('', '', $default_font_size - 1); 
+			$pdf->MultiCell(100, 4, $outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->convToOutputCharset($this->emetteur->tva_intra).' - '.$outputlangs->transnoentities("Taxauthority").': '.$outputlangs->convToOutputCharset($this->emetteur->idprof2), 0, 'L'); //
 					
 			// Show sender contact information
 			$pdf->SetXY($posx -15, $posy +12); 
@@ -2538,14 +2540,28 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->code_client), 0, 'L');
 		}	
 			$posy = $pdf->getY();
-			// Show recipient information
+			
+			// Show recipient profesion
 			$pdf->SetFont('', '', $default_font_size - 1);
 			$pdf->SetXY($posx + 2, $posy + 3);
 			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
 			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
-			$pdf->MultiCell($widthrecbox, 0, $carac_client, 0, 'L'); //
-
-
+			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("Profession").': '.$outputlangs->transnoentities($object->thirdparty->idprof1), 0, 'L'); //
+			
+			// Show recipient vat
+			$pdf->SetFont('', '', $default_font_size - 1);
+			$pdf->SetXY($posx + 2, $posy + 7);
+			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
+			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
+			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->transnoentities($object->thirdparty->tva_intra).' - '.$outputlangs->transnoentities("Taxauthority").': '.$outputlangs->transnoentities($object->thirdparty->idprof2), 0, 'L'); //				
+			
+			// Show recipient full address
+			$pdf->SetFont('', '', $default_font_size - 1);
+			$pdf->SetXY($posx + 2, $posy + 11);
+			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
+			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
+			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->address).' - '.$outputlangs->transnoentities($object->thirdparty->town).' - '.$outputlangs->transnoentities($object->thirdparty->zip), 0, 'L');	
+						
 
 			// Show shipping address
 			if (getDolGlobalInt('INVOICE_SHOW_SHIPPING_ADDRESS')) {
@@ -2602,9 +2618,10 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 	 *      @return	int								Return height of bottom margin including footer text
 	 */
 	protected function _pagefoot(&$pdf, $object, $outputlangs, $hidefreetext = 0)
-	{
+	{		
 		$showdetails = getDolGlobalInt('MAIN_GENERATE_DOCUMENTS_SHOW_FOOT_DETAILS', 0);
-		return pdf_pagefoot($pdf, $outputlangs, 'INVOICE_FREE_TEXT', $this->emetteur, $this->marge_basse, $this->marge_gauche, $this->page_hauteur, $object, $showdetails, $hidefreetext, $this->page_largeur, $this->watermark);
+		// Απόκρυψη στοιχείων
+		return pdf_pagefoot($pdf, $outputlangs, 'INVOICE_FREE_TEXT', $this->emetteur=0, $this->marge_basse, $this->marge_gauche, $this->page_hauteur, $object, $showdetails, $hidefreetext, $this->page_largeur, $this->watermark);
 	}
 
 	/**

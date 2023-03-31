@@ -1,4 +1,18 @@
 # CHANGELOG Mask4Greece FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
+
+***** ChangeLog for 2.0.3 compared to 2.0.2 ***** 
+
+Feature: RedMoon πρότυπο PDF δελτίου αποστολής προσαρμοσμένο στα Ελληνικά δεδομένα.
+
+   1. Σκοπός Διακίνησης με τη χρήση extrafield 
+   2. Ώρα αποστολής με τη χρήση extrafield 
+   3. Αρ. οχήματος με τη χρήση extrafield 
+
+NEW: Πλήρης υποστήριξη αγγλικών
+
+FIX: Αφαίρεση στοιχείων εταιρείας απο footer
+
+
 ***** ChangeLog for 2.0.2 compared to 2.0.1 ***** 
 
 NEW: #5 Aρίθμηση σελίδας 

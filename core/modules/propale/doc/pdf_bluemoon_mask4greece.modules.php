@@ -137,7 +137,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 		global $conf, $langs, $mysoc;
 
 		// Translations
-		$langs->loadLangs(array("main", "bills"));
+		$langs->loadLangs(array("main", "bills", "mask4greece@mask4greece"));
 
 		$this->db = $db;
 		$this->name = "bluemoon";
@@ -216,7 +216,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 		}
 
 		// Load translation files required by page
-		$outputlangs->loadLangs(array("main", "dict", "companies", "bills", "products", "propal"));
+		$outputlangs->loadLangs(array("main", "dict", "companies", "bills", "products", "propal", "mask4greece@mask4greece"));
 
 		//  Show Draft Watermark
 		if ($object->statut == $object::STATUS_DRAFT && getDolGlobalString('PROPALE_DRAFT_WATERMARK')) {
@@ -228,7 +228,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 		if (!empty($conf->global->PDF_USE_ALSO_LANGUAGE_CODE) && $outputlangs->defaultlang != $conf->global->PDF_USE_ALSO_LANGUAGE_CODE) {
 			$outputlangsbis = new Translate('', $conf);
 			$outputlangsbis->setDefaultLang($conf->global->PDF_USE_ALSO_LANGUAGE_CODE);
-			$outputlangsbis->loadLangs(array("main", "dict", "companies", "bills", "products", "propal"));
+			$outputlangsbis->loadLangs(array("main", "dict", "companies", "bills", "products", "propal", "mask4greece@mask4greece"));
 		}
 
 		$nblines = count($object->lines);
@@ -396,7 +396,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 
 
 				$tab_top = 90 + $top_shift;
-				$tab_top_newpage = (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD') ? 42 + $top_shift : 10);
+				$tab_top_newpage = (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD') ? 85 + $top_shift : 10);
 
 
 				// Incoterm
@@ -484,7 +484,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 								$pdf->useTemplate($tplidx);
 							}
 							if (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD')) {
-								$this->_pagehead($pdf, $object, 0, $outputlangs);
+								$this->_pagehead($pdf, $object, 1, $outputlangs);
 							}
 							// $this->_pagefoot($pdf,$object,$outputlangs,1);
 							$pdf->setTopMargin($tab_top_newpage);
@@ -542,7 +542,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 							$pdf->useTemplate($tplidx);
 						}
 						if (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD')) {
-							$this->_pagehead($pdf, $object, 0, $outputlangs);
+							$this->_pagehead($pdf, $object, 1, $outputlangs);
 						}
 						$height_note = $posyafter - $tab_top_newpage;
 						$pdf->Rect($this->marge_gauche, $tab_top_newpage - 1, $tab_width, $height_note + 1);
@@ -564,7 +564,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 								$pdf->useTemplate($tplidx);
 							}
 							if (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD')) {
-								$this->_pagehead($pdf, $object, 0, $outputlangs);
+								$this->_pagehead($pdf, $object, 1, $outputlangs);
 							}
 
 							$posyafter = $tab_top_newpage;
@@ -850,7 +850,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 						$pdf->setPage($pagenb);
 						$pdf->setPageOrientation('', 1, 0); // The only function to edit the bottom margin of current page to set it.
 						if (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD')) {
-							$this->_pagehead($pdf, $object, 0, $outputlangs);
+							$this->_pagehead($pdf, $object, 1, $outputlangs);
 						}
 						if (!empty($tplidx)) {
 							$pdf->useTemplate($tplidx);
@@ -871,7 +871,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 						}
 						$pagenb++;
 						if (!getDolGlobalInt('MAIN_PDF_DONOTREPEAT_HEAD')) {
-							$this->_pagehead($pdf, $object, 0, $outputlangs);
+							$this->_pagehead($pdf, $object, 1, $outputlangs);
 						}
 					}
 				}
@@ -1225,7 +1225,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 		if (!empty($conf->global->PDF_USE_ALSO_LANGUAGE_CODE) && $outputlangs->defaultlang != $conf->global->PDF_USE_ALSO_LANGUAGE_CODE) {
 			$outputlangsbis = new Translate('', $conf);
 			$outputlangsbis->setDefaultLang($conf->global->PDF_USE_ALSO_LANGUAGE_CODE);
-			$outputlangsbis->loadLangs(array("main", "dict", "companies", "bills", "products", "propal"));
+			$outputlangsbis->loadLangs(array("main", "dict", "companies", "bills", "products", "propal", "mask4greece@mask4greece"));
 			$default_font_size--;
 		}
 
@@ -1538,6 +1538,11 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 		if (empty($hidetop)) {
 			$pdf->line($this->marge_gauche, $tab_top + $this->tabTitleHeight, $this->page_largeur - $this->marge_droite, $tab_top + $this->tabTitleHeight); // line takes a position y in 2nd parameter and 4th parameter
 		}
+		
+		// Aρίθμηση σελίδας
+		$pdf->SetXY(-25,-5);
+                $pdf->MultiCell(20, 2, $outputlangs->transnoentities("Page").' '.$pdf->PageNo( ), 0, 'R', 0);		
+		
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.PublicUnderscore
@@ -1559,7 +1564,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 		if ($outputlangs->trans("DIRECTION") == 'rtl') $ltrdirection = 'R';
 
 		// Load traductions files required by page
-		$outputlangs->loadLangs(array("main", "propal", "companies", "bills"));
+		$outputlangs->loadLangs(array("main", "propal", "companies", "bills", "mask4greece@mask4greece"));
 
 		$default_font_size = pdf_getPDFFontSize($outputlangs);
 
@@ -1603,18 +1608,21 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 		}
 
 		$pdf->SetFont('', 'B', $default_font_size + 3);
-		$pdf->SetXY($posx, $posy);
+		$pdf->SetXY($posx + 3, $posy + 32);
 		$pdf->SetTextColor(0, 0, 60);
-		// $title = $outputlangs->transnoentities("PdfCommercialProposalTitle");
+		if (getDolGlobalInt('MAIN_MULTILANGS') && ($outputlangs->defaultlang != $langs->defaultlang)) { 
+		$title = $outputlangs->transnoentities("PdfCommercialProposalTitle");
 		// Το παραπάνω βγάζει "Πρόταση" αντι για "Προσφορά" 
+		} else {
                 $title = "Προσφορά";
+		}	
 		$title .= ' '.$outputlangs->convToOutputCharset($object->ref);
 		if ($object->statut == $object::STATUS_DRAFT) {
 			$pdf->SetTextColor(128, 0, 0);
 			$title .= ' - '.$outputlangs->transnoentities("NotValidated");
 		}
 
-		$pdf->MultiCell($w, 4, $title, '', 'R');
+		$pdf->MultiCell($w, 4, $title, '', 'L');
 
 		$pdf->SetFont('', 'B', $default_font_size);
 
@@ -1635,18 +1643,18 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 
 		if ($object->ref_client) {
 			$posy += 4;
-			$pdf->SetXY($posx, $posy);
+			$pdf->SetXY($posx + 3, $posy + 32);
 			$pdf->SetTextColor(0, 0, 60);
-			$pdf->MultiCell($w, 3, $outputlangs->transnoentities("RefCustomer")." : ".dol_trunc($outputlangs->convToOutputCharset($object->ref_client), 65), '', 'R');
+			$pdf->MultiCell($w, 3, $outputlangs->transnoentities("RefCustomer")." : ".dol_trunc($outputlangs->convToOutputCharset($object->ref_client), 65), '', 'L');
 		}
 
 		if (!empty($conf->global->PDF_SHOW_PROJECT_TITLE)) {
 			$object->fetch_projet();
 			if (!empty($object->project->ref)) {
 				$posy += 3;
-				$pdf->SetXY($posx, $posy);
+				$pdf->SetXY($posx + 3, $posy + 32);
 				$pdf->SetTextColor(0, 0, 60);
-				$pdf->MultiCell($w, 3, $outputlangs->transnoentities("Project")." : ".(empty($object->project->title) ? '' : $object->project->title), '', 'R');
+				$pdf->MultiCell($w, 3, $outputlangs->transnoentities("Project")." : ".(empty($object->project->title) ? '' : $object->project->title), '', 'L');
 			}
 		}
 
@@ -1655,9 +1663,9 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 			if (!empty($object->project->ref)) {
 				$outputlangs->load("projects");
 				$posy += 3;
-				$pdf->SetXY($posx, $posy);
+				$pdf->SetXY($posx + 3, $posy + 32);
 				$pdf->SetTextColor(0, 0, 60);
-				$pdf->MultiCell($w, 3, $outputlangs->transnoentities("RefProject")." : ".(empty($object->project->ref) ? '' : $object->project->ref), '', 'R');
+				$pdf->MultiCell($w, 3, $outputlangs->transnoentities("RefProject")." : ".(empty($object->project->ref) ? '' : $object->project->ref), '', 'L');
 			}
 		}
 
@@ -1668,25 +1676,25 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 		}
 
 		$posy += 4;
-		$pdf->SetXY($posx, $posy);
+		$pdf->SetXY($posx + 3, $posy + 32);
 		$pdf->SetTextColor(0, 0, 60);
-		$pdf->MultiCell($w, 3, $outputlangs->transnoentities("Date")." : ".dol_print_date($object->date, $displaydate, false, $outputlangs, true), '', 'R');
+		$pdf->MultiCell($w, 3, $outputlangs->transnoentities("Date")." : ".dol_print_date($object->date, $displaydate, false, $outputlangs, true), '', 'L');
 
 		$posy += 4;
-		$pdf->SetXY($posx, $posy);
+		$pdf->SetXY($posx + 3, $posy + 32);
 		$pdf->SetTextColor(0, 0, 60);
 
 		$title = $outputlangs->transnoentities("DateEndPropal");
 		if (!empty($conf->global->PDF_USE_ALSO_LANGUAGE_CODE) && is_object($outputlangsbis)) {
 			$title .= ' - '.$outputlangsbis->transnoentities("DateEndPropal");
 		}
-		$pdf->MultiCell($w, 3, $title." : ".dol_print_date($object->fin_validite, $displaydate, false, $outputlangs, true), '', 'R');
+		$pdf->MultiCell($w, 3, $title." : ".dol_print_date($object->fin_validite, $displaydate, false, $outputlangs, true), '', 'L');
 
 		if (empty($conf->global->MAIN_PDF_HIDE_CUSTOMER_CODE) && $object->thirdparty->code_client) {
 			$posy += 4;
-			$pdf->SetXY($posx, $posy);
+			$pdf->SetXY($posx + 3, $posy + 32);
 			$pdf->SetTextColor(0, 0, 60);
-			$pdf->MultiCell($w, 3, $outputlangs->transnoentities("CustomerCode")." : ".$outputlangs->transnoentities($object->thirdparty->code_client), '', 'R');
+			$pdf->MultiCell($w, 3, $outputlangs->transnoentities("CustomerCode")." : ".$outputlangs->transnoentities($object->thirdparty->code_client), '', 'L');
 		}
 
 		// Get contact
@@ -1696,9 +1704,9 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 				$usertmp = new User($this->db);
 				$usertmp->fetch($arrayidcontact[0]);
 				$posy += 4;
-				$pdf->SetXY($posx, $posy);
+				$pdf->SetXY($posx + 3, $posy + 32);
 				$pdf->SetTextColor(0, 0, 60);
-				$pdf->MultiCell($w, 3, $langs->transnoentities("SalesRepresentative")." : ".$usertmp->getFullName($langs), '', 'R');
+				$pdf->MultiCell($w, 3, $langs->transnoentities("SalesRepresentative")." : ".$usertmp->getFullName($langs), '', 'L');
 			}
 		}
 
@@ -1707,65 +1715,66 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 		$top_shift = 0;
 		// Show list of linked objects
 		$current_y = $pdf->getY();
-		$posy = pdf_writeLinkedObjects($pdf, $object, $outputlangs, $posx, $posy, $w, 3, 'R', $default_font_size);
+		$posy = pdf_writeLinkedObjects($pdf, $object, $outputlangs, $posx, $posy, $w, 3, 'L', $default_font_size);
 		if ($current_y < $pdf->getY()) {
 			$top_shift = $pdf->getY() - $current_y;
 		}
 
 		if ($showaddress) {
 			// Sender properties
-			$carac_emetteur = '';
-			// Add internal contact of proposal if defined
-			$arrayidcontact = $object->getIdContact('internal', 'SALESREPFOLL');
-			if (count($arrayidcontact) > 0) {
-				$object->fetch_user($arrayidcontact[0]);
-				$labelbeforecontactname = ($outputlangs->transnoentities("FromContactName") != 'FromContactName' ? $outputlangs->transnoentities("FromContactName") : $outputlangs->transnoentities("Name"));
-				$carac_emetteur .= ($carac_emetteur ? "\n" : '').$labelbeforecontactname." ".$outputlangs->convToOutputCharset($object->user->getFullName($outputlangs))."\n";
-			}
-
-			$carac_emetteur .= pdf_build_address($outputlangs, $this->emetteur, $object->thirdparty, '', 0, 'source', $object);
+			$carac_emetteur = pdf_build_address($outputlangs, $this->emetteur, $object->thirdparty, '', 0, 'source', $object);
 
 			// Show sender
-			$posy = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 40 : 42;
+			///$posy = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 40 : 42;
 			$posy += $top_shift;
+			$posy=5; //
 			$posx = $this->marge_gauche;
+            		$posx=118; //
 			if (!empty($conf->global->MAIN_INVERT_SENDER_RECIPIENT)) {
-				$posx = $this->page_largeur - $this->marge_droite - 80;
+			$posx = $this->page_largeur - $this->marge_droite - 80;
 			}
-
-			$hautcadre = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 38 : 40;
-			$widthrecbox = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 92 : 82;
+			$hautcadre=32; //
+			///$hautcadre = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 38 : 40;
+			///$widthrecbox = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 92 : 82;
 
 			// Show sender frame
 			if (empty($conf->global->MAIN_PDF_NO_SENDER_FRAME)) {
 				$pdf->SetTextColor(0, 0, 0);
 				$pdf->SetFont('', '', $default_font_size - 2);
-				$pdf->SetXY($posx, $posy - 5);
-				$pdf->MultiCell($widthrecbox, 5, $outputlangs->transnoentities("BillFrom"), 0, $ltrdirection);
-				$pdf->SetXY($posx, $posy);
-				$pdf->SetFillColor(230, 230, 230);
-				$pdf->MultiCell($widthrecbox, $hautcadre, "", 0, 'R', 1);
-				$pdf->SetTextColor(0, 0, 60);
-			}
+			        $pdf->SetXY($posx -5, $posy); 
+                                $pdf->SetFillColor(255,255,255); 
+				$pdf->MultiCell($widthrecbox, $hautcadre, "", 0, 'R', 1); 
+                         }
 
 			// Show sender name
 			if (empty($conf->global->MAIN_PDF_HIDE_SENDER_NAME)) {
-				$pdf->SetXY($posx + 2, $posy + 3);
 				$pdf->SetFont('', 'B', $default_font_size);
-				$pdf->MultiCell($widthrecbox - 2, 4, $outputlangs->convToOutputCharset($this->emetteur->name), 0, $ltrdirection);
+			    	$pdf->SetXY($posx -15, $posy +4); 
+			    	$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($this->emetteur->name), 0, 'L'); //
+
 				$posy = $pdf->getY();
 			}
 			
-			// Show sender proffesion
-		        $pdf->SetXY($posx + 2, $posy + 8);
+			// Show sender profesion
+		        $pdf->SetXY($posx -15, $posy);
 			$pdf->SetFont('', '', $default_font_size - 1);			
-			$pdf->MultiCell($widthrecbox - 2, 4, $outputlangs->convToOutputCharset($this->emetteur->idprof1), 0, 'L');
-
-			// Show sender information
-			$pdf->SetXY($posx + 2, $posy);
-			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->MultiCell($widthrecbox - 2, 4, $carac_emetteur, 0, $ltrdirection);
-
+			$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($this->emetteur->idprof1), 0, 'L');
+			
+			// Show sender full address
+			$pdf->SetXY($posx -15, $posy +4);
+			$pdf->SetFont('', '', $default_font_size - 1);			
+			$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($this->emetteur->address).' - '.$outputlangs->convToOutputCharset($this->emetteur->town).' - '.$outputlangs->convToOutputCharset($this->emetteur->zip), 0, 'L');	
+				
+			// Show sender vat		
+			$pdf->SetXY($posx -15,$posy +8);
+			$pdf->SetFont('', '', $default_font_size - 1); 
+			$pdf->MultiCell(100, 4, $outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->convToOutputCharset($this->emetteur->tva_intra).' - '.$outputlangs->transnoentities("Taxauthority").': '.$outputlangs->convToOutputCharset($this->emetteur->idprof2), 0, 'L'); //
+					
+			// Show sender contact information
+			$pdf->SetXY($posx -15, $posy +12); 
+			$pdf->SetFont('','', $default_font_size - 1); 
+			$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($this->emetteur->phone).' - '.$outputlangs->convToOutputCharset($this->emetteur->email).' - '.$outputlangs->convToOutputCharset($this->emetteur->url), 0, 'L');
+			
 
 			// If CUSTOMER contact defined, we use it
 			$usecontact = false;
@@ -1774,6 +1783,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 				$usecontact = true;
 				$result = $object->fetch_contact($arrayidcontact[0]);
 			}
+
 
 			// Recipient name
 			if ($usecontact && ($object->contact->socid != $object->thirdparty->id && (!isset($conf->global->MAIN_USE_COMPANY_NAME_OF_CONTACT) || !empty($conf->global->MAIN_USE_COMPANY_NAME_OF_CONTACT)))) {
@@ -1788,13 +1798,18 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 			$carac_client = pdf_build_address($outputlangs, $this->emetteur, $object->thirdparty, ($usecontact ? $object->contact : ''), $usecontact, $mode, $object);
 
 			// Show recipient
-			$widthrecbox = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 92 : 100;
+			///$widthrecbox = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 92 : 100;
+			$widthrecbox=85;
 			if ($this->page_largeur < 210) {
-				$widthrecbox = 84; // To work with US executive format
+				$widthrecbox=85; // To work with US executive format
 			}
-			$posy = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 40 : 42;
-			$posy += $top_shift;
-			$posx = $this->page_largeur - $this->marge_droite - $widthrecbox;
+			///$posy = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 40 : 42;
+			///$posy += $top_shift;
+			$posy=42; //
+			$hautcadrec=20;
+			///$posx = $this->page_largeur - $this->marge_droite - $widthrecbox;
+            $posx=10; //
+
 			if (!empty($conf->global->MAIN_INVERT_SENDER_RECIPIENT)) {
 				$posx = $this->marge_gauche;
 			}
@@ -1809,16 +1824,40 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 			}
 
 			// Show recipient name
-			$pdf->SetXY($posx + 2, $posy + 3);
+			$pdf->SetXY($posx + 2, $posy + 1);
 			$pdf->SetFont('', 'B', $default_font_size);
-			$pdf->MultiCell($widthrecbox, 2, $carac_client_name, 0, $ltrdirection);
-
+			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client_name, 0, $ltrdirection);
+			$pdf->MultiCell($widthrecbox, 0, $carac_client_name, 0, 'L'); //
 			$posy = $pdf->getY();
-
-			// Show recipient information
+		if (empty($conf->global->MAIN_PDF_HIDE_CUSTOMER_CODE) && $object->thirdparty->code_client) {
 			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy);
-			$pdf->MultiCell($widthrecbox, 4, $carac_client, 0, $ltrdirection);
+			$pdf->SetXY($posx + 2, $posy + 3);
+
+			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->code_client), 0, 'L');
+		}	
+			$posy = $pdf->getY();
+			
+			// Show recipient profesion
+			$pdf->SetFont('', '', $default_font_size - 1);
+			$pdf->SetXY($posx + 2, $posy + 3);
+			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
+			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
+			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("Profession").': '.$outputlangs->transnoentities($object->thirdparty->idprof1), 0, 'L'); //
+			
+			// Show recipient vat
+			$pdf->SetFont('', '', $default_font_size - 1);
+			$pdf->SetXY($posx + 2, $posy + 7);
+			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
+			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
+			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->transnoentities($object->thirdparty->tva_intra).' - '.$outputlangs->transnoentities("Taxauthority").': '.$outputlangs->transnoentities($object->thirdparty->idprof2), 0, 'L'); //				
+			
+			// Show recipient full address
+			$pdf->SetFont('', '', $default_font_size - 1);
+			$pdf->SetXY($posx + 2, $posy + 11);
+			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
+			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
+			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->address).' - '.$outputlangs->transnoentities($object->thirdparty->town).' - '.$outputlangs->transnoentities($object->thirdparty->zip), 0, 'L');	
+							
 		}
 
 		$pdf->SetTextColor(0, 0, 0);
@@ -1838,7 +1877,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 	protected function _pagefoot(&$pdf, $object, $outputlangs, $hidefreetext = 0)
 	{
 		$showdetails = getDolGlobalInt('MAIN_GENERATE_DOCUMENTS_SHOW_FOOT_DETAILS', 0);
-		return pdf_pagefoot($pdf, $outputlangs, 'PROPOSAL_FREE_TEXT', $this->emetteur, $this->marge_basse, $this->marge_gauche, $this->page_hauteur, $object, $showdetails, $hidefreetext, $this->page_largeur, $this->watermark);
+		return pdf_pagefoot($pdf, $outputlangs, 'PROPOSAL_FREE_TEXT', $this->emetteur=0, $this->marge_basse, $this->marge_gauche, $this->page_hauteur, $object, $showdetails, $hidefreetext, $this->page_largeur, $this->watermark);
 	}
 
 	/**
