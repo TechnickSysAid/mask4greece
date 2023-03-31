@@ -1722,27 +1722,21 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 
 		if ($showaddress) {
 			// Sender properties
-			$carac_emetteur = '';
-			// Add internal contact of proposal if defined
-			$arrayidcontact = $object->getIdContact('internal', 'SALESREPFOLL');
-			if (count($arrayidcontact) > 0) {
-				$object->fetch_user($arrayidcontact[0]);
-				$labelbeforecontactname = ($outputlangs->transnoentities("FromContactName") != 'FromContactName' ? $outputlangs->transnoentities("FromContactName") : $outputlangs->transnoentities("Name"));
-				$carac_emetteur .= ($carac_emetteur ? "\n" : '').$labelbeforecontactname." ".$outputlangs->convToOutputCharset($object->user->getFullName($outputlangs))."\n";
-			}
-
-			$carac_emetteur .= pdf_build_address($outputlangs, $this->emetteur, $object->thirdparty, '', 0, 'source', $object);
+			$carac_emetteur = pdf_build_address($outputlangs, $this->emetteur, $object->thirdparty, '', 0, 'source', $object);
 
 			// Show sender
-			$posy = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 40 : 42;
+			///$posy = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 40 : 42;
 			$posy += $top_shift;
+			$posy=5; //
 			$posx = $this->marge_gauche;
+            		$posx=118; //
 			if (!empty($conf->global->MAIN_INVERT_SENDER_RECIPIENT)) {
-				$posx = $this->page_largeur - $this->marge_droite - 80;
+			$posx = $this->page_largeur - $this->marge_droite - 80;
 			}
+			$hautcadre=32; //
+			///$hautcadre = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 38 : 40;
+			///$widthrecbox = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 92 : 82;
 
-			$hautcadre = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 38 : 40;
-			$widthrecbox = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 92 : 82;
 			// Show sender frame
 			if (empty($conf->global->MAIN_PDF_NO_SENDER_FRAME)) {
 				$pdf->SetTextColor(0, 0, 0);
@@ -1750,7 +1744,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 			        $pdf->SetXY($posx -5, $posy); 
                                 $pdf->SetFillColor(255,255,255); 
 				$pdf->MultiCell($widthrecbox, $hautcadre, "", 0, 'R', 1); 
-                        }
+                         }
 
 			// Show sender name
 			if (empty($conf->global->MAIN_PDF_HIDE_SENDER_NAME)) {
@@ -1780,7 +1774,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 			$pdf->SetXY($posx -15, $posy +12); 
 			$pdf->SetFont('','', $default_font_size - 1); 
 			$pdf->MultiCell(100, 4, $outputlangs->convToOutputCharset($this->emetteur->phone).' - '.$outputlangs->convToOutputCharset($this->emetteur->email).' - '.$outputlangs->convToOutputCharset($this->emetteur->url), 0, 'L');
-
+			
 
 			// If CUSTOMER contact defined, we use it
 			$usecontact = false;
@@ -1826,7 +1820,7 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 				$pdf->SetFont('', '', $default_font_size - 2);
 				$pdf->SetXY($posx + 2, $posy - 5);
 				$pdf->MultiCell($widthrecbox, 5, $outputlangs->transnoentities("BillTo"), 0, $ltrdirection);
-				$pdf->Rect($posx, $posy, $widthrecbox, $hautcadre+10);
+				$pdf->Rect($posx, $posy, $widthrecbox, $hautcadre);
 			}
 
 			// Show recipient name
