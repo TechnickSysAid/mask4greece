@@ -1,5 +1,17 @@
 # Invoice mask for Greece
 Dolibarr invoice mask for Greece & PDF model
+
+* Τιμολόγιο Πώλησης
+* Τιμολόγιο Παροχής Υπηρεσιών
+* Απόδειξη Λιανικής Πώλησης
+* Απόδειξη Παροχής Υπηρεσιών
+* Πιστωτικό Τιμολόγιο
+* Πιστωτικό Λιανικής
+* Δελτίο Αποστολής
+* Προσφορά
+
+For more info read the [wiki](https://github.com/TechnickSysAid/mask4greece/wiki)
+
 ***
 ## Version Information:
 * Name: Mask4Greece
