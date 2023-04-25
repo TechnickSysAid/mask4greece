@@ -5,8 +5,8 @@
  * Copyright (C) 2008		Raphael Bertrand (Resultic)	<raphael.bertrand@resultic.fr>
  * Copyright (C) 2013		uanjo Menent				<jmenent@2byte.es>
  * Copyright (C) 2022		Anthony Berton				<anthony.berton@bb2a.fr>
- * Copyright (C) 2022-2023  Nikos Drosis                 <ndrosis@sysaid.gr>
- * Copyright (C) 2022-2023  Nick Fragoulis
+ * Copyright (C) 2022-2023      Nikos Drosis                            <ndrosis@sysaid.gr>
+ * Copyright (C) 2022-2023      Nick Fragoulis
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
