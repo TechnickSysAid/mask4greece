@@ -2358,21 +2358,22 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 		// Αν είναι τιμολόγιο πώλησης εμφανίζουμε και τα παρακάτω
 		$title = $extrafields->showOutputField('mydata_type', $object->array_options['options_mydata_type'], '', $object->table_element);
 		$plate = $extrafields->showOutputField('licence_plate', $object->array_options['options_licence_plate'], '', $object->table_element);
+		$shipp = $extrafields->showOutputField('timshiptime', $object->array_options['options_timshiptime'], '', $object->table_element);		
 		if ($title == 'Τιμολόγιο Πώλησης') {
 		      if (getDolGlobalInt('MAIN_MULTILANGS') || ($outputlangs->defaultlang == $langs->defaultlang)) {
 		      $posy += 4;
 		      $pdf->SetFont('','', $default_font_size - 1); 
 		      $pdf->SetXY($posx +13, $posy);
-		      $pdf->MultiCell($w +5, 3, $outputlangs->transnoentities("Shipmentpurpose")." : ".'Πώληση', '', 'L');
+		      $pdf->MultiCell($w +5, 3, $outputlangs->transnoentities("Shipmentpurpose")." : ".$outputlangs->transnoentities('Sale'), '', 'L');
 		      $posy += 4;
 		      $pdf->SetFont('','', $default_font_size - 1); 
 		      $pdf->SetXY($posx +13, $posy);
-      		      // Χρησιμοποιούμε το mark για να συμπληρώσουμε την ώρα αποστολής
-		      $pdf->MultiCell($w, 3, $outputlangs->transnoentities("Shipmenttime")." : ".dol_substr($mark, 9, -18), '', 'L');
+		      $pdf->MultiCell($w, 3, $outputlangs->transnoentities("Vehicleregistrationplate")." : ".$plate, '', 'L'); 		      
 		      $posy += 4;
 		      $pdf->SetFont('','', $default_font_size - 1); 
 		      $pdf->SetXY($posx +13, $posy);
-		      $pdf->MultiCell($w, 3, $outputlangs->transnoentities("Vehicleregistrationplate")." : ".$plate, '', 'L'); }
+		      $pdf->MultiCell($w, 3, $outputlangs->transnoentities("Shipmenttime")." : ".$shipp, '', 'L'); 
+		      }
 		}
 		
 		if ($object->type != 2) {
