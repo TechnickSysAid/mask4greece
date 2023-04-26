@@ -943,7 +943,7 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
                 $extralabels=$extrafields->fetch_name_optionals_label($object->table_element);
                 $object->fetch($rowid);
                 $object->fetch_optionals($rowid,$extralabels);
-                $stime = $outputlangs->convToOutputCharset($object->array_options['options_shiptime']);	
+                $stime = $extrafields->showOutputField('shiptime', $object->array_options['options_shiptime'], '', $object->table_element);
                 $shippurpose = $extrafields->showOutputField('purpose', $object->array_options['options_purpose'], '', $object->table_element);
                 $plate = $extrafields->showOutputField('dalicence_plate', $object->array_options['options_dalicence_plate'], '', $object->table_element);
 		$pdf->SetFont('','', $default_font_size + 1);                 
@@ -1143,26 +1143,26 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 		}	
 			$posy = $pdf->getY();
 			
-			// Show recipient proffesion
-			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy + 3);
-			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
-			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
-			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("Profession").': '.$outputlangs->transnoentities($object->thirdparty->idprof1), 0, 'L'); //
-			
 			// Show recipient vat
 			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy + 7);
+			$pdf->SetXY($posx, $posy + 3);
 			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
 			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
 			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->transnoentities($object->thirdparty->tva_intra).' - '.$outputlangs->transnoentities("Taxauthority").': '.$outputlangs->transnoentities($object->thirdparty->idprof2), 0, 'L'); //				
 			
 			// Show recipient full address
 			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy + 11);
+			$pdf->SetXY($posx, $posy + 7);
 			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
 			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
 			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->address).' - '.$outputlangs->transnoentities($object->thirdparty->town).' - '.$outputlangs->transnoentities($object->thirdparty->zip), 0, 'L');	
+			
+			// Show recipient proffesion
+			$pdf->SetFont('', '', $default_font_size - 1);
+			$pdf->SetXY($posx, $posy + 11);
+			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
+			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
+			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("Profession").': '.$outputlangs->transnoentities($object->thirdparty->idprof1), 0, 'L'); //		
 				
 		}
 
