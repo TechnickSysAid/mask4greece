@@ -1837,27 +1837,27 @@ class pdf_bluemoon_mask4greece extends ModelePDFPropales
 		}	
 			$posy = $pdf->getY();
 			
-			// Show recipient profesion
-			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy + 3);
-			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
-			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
-			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("Profession").': '.$outputlangs->transnoentities($object->thirdparty->idprof1), 0, 'L'); //
-			
 			// Show recipient vat
 			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy + 7);
+			$pdf->SetXY($posx + 2, $posy + 3);
 			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
 			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
 			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->transnoentities($object->thirdparty->tva_intra).' - '.$outputlangs->transnoentities("Taxauthority").': '.$outputlangs->transnoentities($object->thirdparty->idprof2), 0, 'L'); //				
 			
 			// Show recipient full address
 			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy + 11);
+			$pdf->SetXY($posx + 2, $posy + 7);
 			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
 			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
 			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->address).' - '.$outputlangs->transnoentities($object->thirdparty->town).' - '.$outputlangs->transnoentities($object->thirdparty->zip), 0, 'L');	
-							
+		
+			// Show recipient profesion
+			$pdf->SetFont('', '', $default_font_size - 1);
+			$pdf->SetXY($posx + 2, $posy + 11);
+			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
+			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
+			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("Profession").': '.$outputlangs->transnoentities($object->thirdparty->idprof1), 0, 'L'); //			
+			
 		}
 
 		$pdf->SetTextColor(0, 0, 0);
