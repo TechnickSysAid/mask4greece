@@ -21,7 +21,7 @@ For more info read the [wiki](https://github.com/TechnickSysAid/mask4greece/wiki
 ***
 
 ## LICENSE
-External Access is released under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version (GPL-3+).
+Mask4Greece is released under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version (GPL-3+).
 
 See the [COPYING](https://github.com/Dolibarr/dolibarr/blob/develop/COPYING) file for a full copy of the license.
 
