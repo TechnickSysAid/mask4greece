@@ -494,7 +494,7 @@ class modMask4greece extends DolibarrModules
 		$result4=$extrafields->addExtraField('purpose', "Σκοπός διακίνησης", 'select',  213, '', 'expedition',   0, 0, '', array('options'=>array('0'=>'Πώληση','1'=>'Επισκευή','2'=>'Επιστροφή','3'=>'Συντήρηση','4'=>'Sale')), 1,'', 1, 1, '', '1', '', '');
 		$result5=$extrafields->update('purpose', "Σκοπός διακίνησης", 'select',  '', 'expedition',   0, 0, 213, array('options'=>array('0'=>'Πώληση','1'=>'Επισκευή','2'=>'Επιστροφή','3'=>'Συντήρηση','4'=>'Sale')), 1,'', 1, "Eπιλέξτε σκοπό διακίνησης", '', '', '', '');
                 $result6=$extrafields->addExtraField('shiptime', "Ημ. & Ώρα αποστολής", 'datetime', 214,  '', 'expedition',   0, 0, '', '', 1, '', 1, "Συμπληρώστε την ημερομηνία και ώρα αποστολής", '', '', '', '');
-                $result7=$extrafields->update('shiptime', "Ημ. & Ώρα αποστολής", 'datetime', '', 'expedition',   0, 0, '', '', 1, '', 1, "Συμπληρώστε την ημερομηνία και ώρα αποστολής", '', '', '', '');
+                $result7=$extrafields->update('shiptime', "Ημ. & Ώρα αποστολής", 'datetime', '', 'expedition',   0, 0, 214, '', 1, '', 1, "Συμπληρώστε την ημερομηνία και ώρα αποστολής", '', '', '', '');
                 $result8=$extrafields->addExtraField('timshiptime', "Ημ. & Ώρα αποστολής", 'datetime', 215,  '', 'facture',   0, 0, '', '', 1, '', 1, "Συμπληρώστε την ημερομηνία και ώρα αποστολής", '', '', '', '');
 
 		//$result1=$extrafields->addExtraField('mask4greece_myattr1', "New Attr 1 label", 'boolean', 1,  3, 'thirdparty',   0, 0, '', '', 1, '', 0, 0, '', '', 'mask4greece@mask4greece', '$conf->mask4greece->enabled');
