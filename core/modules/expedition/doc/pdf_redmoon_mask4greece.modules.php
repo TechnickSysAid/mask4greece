@@ -1112,7 +1112,7 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 			///$posy = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 40 : 42;
 			///$posy += $top_shift;
 			$posy=42; //
-			$hautcadrec=20;
+
 			///$posx = $this->page_largeur - $this->marge_droite - $widthrecbox;
             $posx=10; //
 
@@ -1120,51 +1120,24 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 				$posx = $this->marge_gauche;
 			}
 
-			// Show recipient frame
-			if (empty($conf->global->MAIN_PDF_NO_RECIPENT_FRAME)) {
-				$pdf->SetTextColor(0, 0, 0);
-				$pdf->SetFont('', '', $default_font_size - 2);
-				$pdf->SetXY($posx + 2, $posy - 5);
-				$pdf->MultiCell($widthrecbox, 5, $outputlangs->transnoentities("BillTo"), 0, $ltrdirection);
-				$pdf->Rect($posx, $posy, $widthrecbox, $hautcadre+10);
-			}
-
-			// Show recipient name
-			$pdf->SetXY($posx + 2, $posy + 1);
-			$pdf->SetFont('', 'B', $default_font_size);
-			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client_name, 0, $ltrdirection);
-			$pdf->MultiCell($widthrecbox, 0, $carac_client_name, 0, 'L'); //
+			// Show recipient name, profession, full address, vat id
+			$pdf->SetTextColor(0, 0, 0);
+			$pdf->SetFont('', '', $default_font_size - 2);
+			$pdf->SetXY($posx, $posy - 5);
+			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("BillTo"), 0, $ltrdirection);			
+			$pdf->SetXY($posx, $posy);
+			$pdf->SetFont('', 'B', $default_font_size - 2);
+			$pdf->MultiCell($widthrecbox, 0, $carac_client_name."\n", 0, 'L');
+			$pdf->SetXY($posx, $posy + 7);
+			$pdf->SetFont('', '', $default_font_size - 1);			
+			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->idprof1).''."\n".$outputlangs->transnoentities($object->thirdparty->address).' - '.$outputlangs->transnoentities($object->thirdparty->town).' - '.$outputlangs->transnoentities($object->thirdparty->zip).''."\n".$outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->transnoentities($object->thirdparty->tva_intra).' - '.$outputlangs->transnoentities("Taxauthority").': '.$outputlangs->transnoentities($object->thirdparty->idprof2), 0, 'L');
 			$posy = $pdf->getY();
 		if (empty($conf->global->MAIN_PDF_HIDE_CUSTOMER_CODE) && $object->thirdparty->code_client) {
 			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy + 3);
+			$pdf->SetXY($posx, $posy + 3);
 
 			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->code_client), 0, 'L');
 		}	
-			$posy = $pdf->getY();
-			
-			// Show recipient vat
-			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx, $posy + 3);
-			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
-			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
-			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->transnoentities($object->thirdparty->tva_intra).' - '.$outputlangs->transnoentities("Taxauthority").': '.$outputlangs->transnoentities($object->thirdparty->idprof2), 0, 'L'); //				
-			
-			// Show recipient full address
-			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx, $posy + 7);
-			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
-			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
-			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->address).' - '.$outputlangs->transnoentities($object->thirdparty->town).' - '.$outputlangs->transnoentities($object->thirdparty->zip), 0, 'L');	
-			
-			// Show recipient proffesion
-			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx, $posy + 11);
-			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
-			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
-			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("Profession").': '.$outputlangs->transnoentities($object->thirdparty->idprof1), 0, 'L'); //		
-				
-		}
 
 		$pdf->SetTextColor(0, 0, 0);
 	}
