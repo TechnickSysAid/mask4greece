@@ -2520,7 +2520,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 			$posy = $pdf->getY();
 			if (empty($conf->global->MAIN_PDF_HIDE_CUSTOMER_CODE) && $object->thirdparty->code_client) {
 			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx, $posy + 3);
+			$pdf->SetXY($posx, $posy);
 
 			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->code_client), 0, 'L');
 			}	
@@ -2542,7 +2542,7 @@ class pdf_moon_mask4greece extends ModelePDFFactures
 					$pdf->SetXY($posx, $posy);
 					$pdf->SetFont('', 'B', $default_font_size -2);
 					$pdf->MultiCell(0, 5, $outputlangs->transnoentities('ShippingTo'), 0, 'L', 0);
-					$pdf->SetXY($posx, $posy + 3);
+					$pdf->SetXY($posx, $posy + 4);
 					$pdf->SetFont('', '', $default_font_size - 1);
 					$lines = explode(PHP_EOL, $carac_client_shipping);
 					$pdf->MultiCell(0, 3, implode(PHP_EOL, array_slice($lines,0,3)) . PHP_EOL, '', 'L');
