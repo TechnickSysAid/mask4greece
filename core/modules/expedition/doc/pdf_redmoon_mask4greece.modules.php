@@ -943,7 +943,7 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
                 $extralabels=$extrafields->fetch_name_optionals_label($object->table_element);
                 $object->fetch($rowid);
                 $object->fetch_optionals($rowid,$extralabels);
-                $stime = $outputlangs->convToOutputCharset($object->array_options['options_shiptime']);	
+                $stime = $extrafields->showOutputField('shiptime', $object->array_options['options_shiptime'], '', $object->table_element);
                 $shippurpose = $extrafields->showOutputField('purpose', $object->array_options['options_purpose'], '', $object->table_element);
                 $plate = $extrafields->showOutputField('dalicence_plate', $object->array_options['options_dalicence_plate'], '', $object->table_element);
 		$pdf->SetFont('','', $default_font_size + 1);                 
@@ -951,7 +951,7 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 		$pdf->SetTextColor(0, 0, 60);
 		if (getDolGlobalInt('MAIN_MULTILANGS') && ($outputlangs->defaultlang != $langs->defaultlang)) { 		
 		$pdf->MultiCell($w, 4, $outputlangs->transnoentities("SendingSheet")." : ".$object->ref, '', 'L');
-		// Το παραπάνω βγάζει "Φύλλο αποστολής" αντι για "Δελτίο αποστολής" 
+		// Το παραπάνω βγάζει "Φύλλο αποστολής" αντί για "Δελτίο αποστολής" 
 		} else {
 		$pdf->MultiCell($w, 4, $outputlangs->transnoentities("Δελτίο αποστολής")." : ".$object->ref, '', 'L');
 		}				
@@ -962,7 +962,7 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
                 $posy += 4;
                 $pdf->SetFont('','', $default_font_size - 1); 				
 		$pdf->SetXY($posx +13, $posy + 32);
-		$pdf->MultiCell($w, 4, $outputlangs->transnoentities("Shipmenttime")." : ".$stime, '', 'L');   // Ώρα Διακίνησης
+		$pdf->MultiCell($w, 4, $outputlangs->transnoentities("Shipmenttime")." : ".$stime, '', 'L');   // Ημ. & Ώρα αποστολής
                 $posy += 4;
                 $pdf->SetFont('','', $default_font_size - 1); 
 		$pdf->SetXY($posx +13, $posy + 32);
@@ -1089,11 +1089,8 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 				$usecontact = true;
 				$result = $object->fetch_contact($arrayidcontact[0]);
 			}
-
-
-			//Recipient name
-			// You can use the name of the contact company
-			if ($usecontact && !empty($conf->global->MAIN_USE_COMPANY_NAME_OF_CONTACT)) {
+			// Recipient name
+			if ($usecontact && ($object->contact->socid != $object->thirdparty->id && (!isset($conf->global->MAIN_USE_COMPANY_NAME_OF_CONTACT) || !empty($conf->global->MAIN_USE_COMPANY_NAME_OF_CONTACT)))) {
 				$thirdparty = $object->contact;
 			} else {
 				$thirdparty = $object->thirdparty;
@@ -1104,69 +1101,40 @@ class pdf_redmoon_mask4greece extends ModelePdfExpedition
 			$carac_client = pdf_build_address($outputlangs, $this->emetteur, $object->thirdparty, (!empty($object->contact) ? $object->contact : null), $usecontact, 'targetwithdetails', $object);
 
 			// Show recipient
-			///$widthrecbox = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 92 : 100;
-			$widthrecbox=85;
+			$widthrecbox = 85;
 			if ($this->page_largeur < 210) {
-				$widthrecbox=85; // To work with US executive format
+				$widthrecbox = 85; // To work with US executive format
 			}
-			///$posy = !empty($conf->global->MAIN_PDF_USE_ISO_LOCATION) ? 40 : 42;
-			///$posy += $top_shift;
-			$posy=42; //
-			$hautcadrec=20;
-			///$posx = $this->page_largeur - $this->marge_droite - $widthrecbox;
-            $posx=10; //
-
+			$posy = 42;
+			$posx = 10;
 			if (!empty($conf->global->MAIN_INVERT_SENDER_RECIPIENT)) {
 				$posx = $this->marge_gauche;
 			}
 
-			// Show recipient frame
+			// Show recipient
 			if (empty($conf->global->MAIN_PDF_NO_RECIPENT_FRAME)) {
 				$pdf->SetTextColor(0, 0, 0);
 				$pdf->SetFont('', '', $default_font_size - 2);
 				$pdf->SetXY($posx + 2, $posy - 5);
-				$pdf->MultiCell($widthrecbox, 5, $outputlangs->transnoentities("BillTo"), 0, $ltrdirection);
-				$pdf->Rect($posx, $posy, $widthrecbox, $hautcadre+10);
+				$pdf->MultiCell($widthrecbox, 5, $outputlangs->transnoentities("Recipient"), 0, 'L');
+
 			}
 
 			// Show recipient name
-			$pdf->SetXY($posx + 2, $posy + 1);
+			$pdf->SetXY($posx + 2, $posy + 3);
 			$pdf->SetFont('', 'B', $default_font_size);
-			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client_name, 0, $ltrdirection);
-			$pdf->MultiCell($widthrecbox, 0, $carac_client_name, 0, 'L'); //
-			$posy = $pdf->getY();
-		if (empty($conf->global->MAIN_PDF_HIDE_CUSTOMER_CODE) && $object->thirdparty->code_client) {
-			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy + 3);
+			$pdf->MultiCell($widthrecbox, 2, $carac_client_name."\n", 0, 'L');
 
-			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->code_client), 0, 'L');
-		}	
 			$posy = $pdf->getY();
-			
-			// Show recipient proffesion
+
+			// Show recipient information
 			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy + 3);
-			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
-			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
-			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("Profession").': '.$outputlangs->transnoentities($object->thirdparty->idprof1), 0, 'L'); //
-			
-			// Show recipient vat
-			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy + 7);
-			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
-			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
-			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->transnoentities($object->thirdparty->tva_intra).' - '.$outputlangs->transnoentities("Taxauthority").': '.$outputlangs->transnoentities($object->thirdparty->idprof2), 0, 'L'); //				
-			
-			// Show recipient full address
-			$pdf->SetFont('', '', $default_font_size - 1);
-			$pdf->SetXY($posx + 2, $posy + 11);
-			//$pdf->SetXY($posx+2,$posy+4+(dol_nboflines_bis($carac_client_name,50)*4)); //
-			///$pdf->MultiCell($widthrecbox - 2, 2, $carac_client, 0, $ltrdirection);
-			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->address).' - '.$outputlangs->transnoentities($object->thirdparty->town).' - '.$outputlangs->transnoentities($object->thirdparty->zip), 0, 'L');	
-				
+			$pdf->SetXY($posx + 2, $posy);
+			$pdf->MultiCell($widthrecbox, 0, $outputlangs->transnoentities($object->thirdparty->idprof1).''."\n".$outputlangs->transnoentities($object->thirdparty->address).' - '.$outputlangs->transnoentities($object->thirdparty->town).' - '.$outputlangs->transnoentities($object->thirdparty->zip).''."\n".$outputlangs->transnoentities("VATIntraShort").': '.$outputlangs->transnoentities($object->thirdparty->tva_intra).' - '.$outputlangs->transnoentities("Taxauthority").': '.$outputlangs->transnoentities($object->thirdparty->idprof2), 0, 'L');
 		}
 
 		$pdf->SetTextColor(0, 0, 0);
+		return $top_shift;
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.PublicUnderscore

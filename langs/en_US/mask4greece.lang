@@ -26,25 +26,26 @@ ModuleMask4GreeceDesc = Dolibarr invoice mask for Greece & PDF model
 #
 # Admin page
 #
-Mask4GreeceSetup = Διαμόρφωση Ελληνικού πρότυπου τιμολογίου
-Settings = Ρυθμίσεις
-Mask4GreeceSetupPage = Σελίδα διαμόρφωσης Ελληνικού πρότυπου τιμολογίου
+Mask4GreeceSetup = Setup of Greek Invoice PDF template
+Settings = Settings
+Mask4GreeceSetupPage = Setup page of Greek Invoice PDF template
 MASK4GREECE_MYPARAM1 = My param 1
 MASK4GREECE_MYPARAM1Tooltip = My param 1 tooltip
 MASK4GREECE_MYPARAM2=My param 2
 MASK4GREECE_MYPARAM2Tooltip=My param 2 tooltip
 Net = Net
 Shipmentpurpose = Shipment purpose
-Shipmenttime = Shipment time
+Shipmenttime = Shipment date-time
 Vehicleregistrationplate = Vehicle registration plate
 Profession = Profession
 Taxauthority = Tax Authority
+Sale = Sale
 #
 # About page
 #
-About = Πληροφορίες
-Mask4GreeceAbout = Πληροφορίες module
-Mask4GreeceAboutPage = Πληροφορίες για το Ελληνικό πρότυπο τιμολογίου
+About = Info
+Mask4GreeceAbout = module info
+Mask4GreeceAboutPage = invoice mask for Greece & PDF model
 
 #
 # Sample page
@@ -59,6 +60,6 @@ Mask4GreeceAboutPage = Πληροφορίες για το Ελληνικό πρ�
 # MyWidgetDescription = My widget description
 
 # Pdf Doc
-PDFMoonDescription = Πρότυπο τιμολογίου PDF Moon. Ένα πλήρες πρότυπο τιμολογίου (συνιστώμενο πρότυπο για Ελλάδα)
-PDFBlueMoonDescription = Πρότυπο προσφοράς PDF Moon. Ένα πλήρες πρότυπο προσφορ (συνιστώμενο πρότυπο για Ελλάδα)
-PDFRedMoonDescription = Πρότυπο προσφοράς PDF Moon. Ένα πλήρες πρότυπο δελτίου αποστολής (συνιστώμενο πρότυπο για Ελλάδα)
+PDFMoonDescription = Greek Invoice PDF template
+PDFBlueMoonDescription = Greek Proposal PDF template
+PDFRedMoonDescription = Greek Shipment sheet PDF template

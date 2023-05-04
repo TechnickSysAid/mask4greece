@@ -35,10 +35,11 @@ MASK4GREECE_MYPARAM2=My param 2
 MASK4GREECE_MYPARAM2Tooltip=My param 2 tooltip
 Net = Καθαρή αξία
 Shipmentpurpose = Σκοπός Διακίνησης
-Shipmenttime = Ώρα αποστολής
+Shipmenttime = Ημ. & Ώρα αποστολής
 Vehicleregistrationplate = Αρ. οχήματος
 Taxauthority = Δ.Ο.Υ.
 Profession = Επάγγελμα
+Sale = Πώληση
 #
 #
 # About page
@@ -60,5 +61,5 @@ Mask4GreeceAboutPage = Πληροφορίες για το Ελληνικό πρ�
 
 # Pdf Doc
 PDFMoonDescription = Πρότυπο τιμολογίου PDF Moon. Ένα πλήρες πρότυπο τιμολογίου (συνιστώμενο πρότυπο για Ελλάδα)
-PDFBlueMoonDescription = Πρότυπο προσφοράς PDF Moon. Ένα πλήρες πρότυπο προσφορών (συνιστώμενο πρότυπο για Ελλάδα)
-PDFRedMoonDescription = Πρότυπο προσφοράς PDF Moon. Ένα πλήρες πρότυπο δελτίου αποστολής (συνιστώμενο πρότυπο για Ελλάδα)
+PDFBlueMoonDescription = Πρότυπο προσφοράς PDF Moon. Ένα πλήρες πρότυπο προσφοράς (συνιστώμενο πρότυπο για Ελλάδα)
+PDFRedMoonDescription = Πρότυπο δελτίου αποστολής PDF Moon. Ένα πλήρες πρότυπο δελτίου αποστολής (συνιστώμενο πρότυπο για Ελλάδα)
