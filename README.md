@@ -18,7 +18,7 @@ For more info read the [wiki](https://github.com/TechnickSysAid/mask4greece/wiki
 * Name: Mask4Greece
 * Prerequisites: Dolibarr version 16.x.+
 * Current version: 4.0.0
-* Last updated: 05/05/2022
+* Last updated: 05/05/2023
 ***
 
 ## LICENSE
