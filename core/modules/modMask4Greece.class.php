@@ -160,8 +160,8 @@ class modMask4greece extends DolibarrModules
 		// Example: $this->const=array(1 => array('MASK4GREECE_MYNEWCONST1', 'chaine', 'myvalue', 'This is a constant to add', 1),
 		//                             2 => array('MASK4GREECE_MYNEWCONST2', 'chaine', 'myvalue', 'This is another constant to add', 0, 'current', 1)
 		// );
-		$this->const = array();
-
+		$this->const = array(0 => array('INVOICE_ADD_SWISS_QR_CODE', 'chaine', 1, 'AADE QR', 1),);
+		
 		// Some keys to add into the overwriting translation tables
 		/*$this->overwrite_translation = array(
 			'en_US:ParentCompany'=>'Parent company or reseller',
