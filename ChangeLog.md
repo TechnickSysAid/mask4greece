@@ -1,21 +1,39 @@
 # CHANGELOG Mask4Greece FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
+
+***** ChangeLog for 4.0.2 compared to 4.0.1 ***** 
+
+Moon πρότυπο PDF τιμολογίου και απόδειξης:
+
+ADD: 2 θεσεις για το QR
+
+ADD: Ποσό παρακράτησης και πληρωτέο
+
 ***** ChangeLog for 4.0.1 compared to 4.0.0 ***** 
 
+Moon πρότυπο PDF τιμολογίου και απόδειξης:
+
+Feature: QR support
 
 ***** ChangeLog for 4.0.0 compared to 3.0.0 ***** 
 
 Feature: Moon μάσκα αρίθμησης.
 
 Moon πρότυπο PDF τιμολογίου και απόδειξης:
+
 ADD: Διαφορετική διεύθυνση παράδοσης
+
 ADD: Ημερομηνία και ώρα αποστολής από την καρτέλα δημιουργίας τιμολογίου
+
 FIX: Στοιχεία πελάτη
 
 Blue Moon πρότυπο PDF για προσφορές
+
 FIX: Στοιχεία πελάτη
 
 Red Moon πρότυπο PDF δελτίου αποστολής: 
+
 ADD: Ημερομηνία και ώρα αποστολής από την καρτέλα δημιουργίας δελτίου
+
 FIX: Στοιχεία πελάτη
 
 ***** ChangeLog for 3.0.0 compared to 2.0.2 ***** 
@@ -36,6 +54,7 @@ FIX: Αφαίρεση στοιχείων εταιρείας απο footer
 NEW: #5 Aρίθμηση σελίδας 
 
 NEW: #5 Εμφάνιση καθαρού ανά κατηγορία Φ.Π.Α. σε ολες τις κατηγορίες. 
+
 Thanks to avogiatzakis (As32) for code and suggestions
 
 ***** ChangeLog for 2.0.1 compared to 2.0.0 ***** 
