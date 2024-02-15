@@ -53,7 +53,7 @@ class mod_facture_moon extends ModeleNumRefFactures
 	 *
 	 *  @return     string      Descriptive text
 	 */
-	public function info()
+	public function info($langs)
 	{
 		global $db, $langs;
 
